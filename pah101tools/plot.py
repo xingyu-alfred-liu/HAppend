@@ -1,11 +1,13 @@
+"""example to gather bandstructure and absorption
+command: python plot_bandstructure_absorption.py -p ../data -id ABECAL -b True -a True -bp band.png -ap absorp.png
+"""
+
 import os
 import json
 import math
 
 import numpy as np
 import matplotlib.pyplot as plt
-
-import code
 
 class PlotAgent:
     def __init__(self, root_path):
@@ -160,7 +162,7 @@ class PlotAgent:
                         edgecolor='k', frameon=True)
         ax = fig.add_subplot(111)
         for i in range(len(QPband[0])-1):
-            plt.plot(QPband[:,0], QPband[:,i+1]-shiftVal, 'r', lineWidth=1.5)
+            plt.plot(QPband[:,0], QPband[:,i+1]-shiftVal, 'r', linewidth=1.5)
             plt.scatter(QPband[:,0], QPband[:,i+1]-shiftVal, s=6, marker='o', c='red')
 
         # add the band gap plot
@@ -217,17 +219,5 @@ class PlotAgent:
         if savefig_path is not None:
             fig.savefig(savefig_path, dpi=300, bbox_inches='tight')
 
-def main():
-    root_path = "/Users/alfred/Desktop/work/PAH101/PAH101Plot/data"
-    plot_agent = PlotAgent(root_path=root_path)
-    bandstruct_fig = plot_agent.plot_bandstructure(
-        struct_id="ABECAL", 
-        savefig_path="band.png"
-    )
-    absorption_fig = plot_agent.plot_absorption(
-        struct_id="ABECAL",
-        savefig_path="absorb.png"
-    )
-
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
