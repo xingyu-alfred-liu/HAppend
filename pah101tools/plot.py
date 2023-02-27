@@ -72,6 +72,7 @@ class PlotAgent:
         
         if savefig_path is not None:
             plt.savefig(savefig_path)
+        
         return fig
 
     def plot_bandstructure(self, struct_id="ABECAL", savefig_path=None):
@@ -218,6 +219,8 @@ class PlotAgent:
 
         if savefig_path is not None:
             fig.savefig(savefig_path, dpi=300, bbox_inches='tight')
+
+        return fig
 
 # if __name__ == "__main__":
 #     main()
