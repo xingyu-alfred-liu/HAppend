@@ -2,10 +2,11 @@ import os
 import copy
 import numpy as np
 import math
+import json
 from ase.io import read
 from pymatgen.core import Structure, Molecule, Site
-from pymatgen.io.cif import CifParser
-from pymatgen.io.ase import AseAtomsAdaptor
+# from pymatgen.io.cif import CifParser
+# from pymatgen.io.ase import AseAtomsAdaptor
 from pymatgen.io.babel import BabelMolAdaptor
 from pymatgen.core.periodic_table import Element, DummySpecie
 from pymatgen.analysis.structure_matcher import StructureMatcher, SpeciesComparator
@@ -15,7 +16,6 @@ from pah101tools.utils import bondCutoff
 from pah101tools.utils import getBondDict, getCentralSingleMol, getSingleMol
 
 from rdkit import Chem
-
 
 def get_singlemolecule(struct):
     superStruct = struct.copy()
@@ -30,7 +30,6 @@ def get_singlemolecule(struct):
     outmol = Molecule(species, position)
     return outmol
 
-
 def calNormalVector(p1, p2, p3):
     # generate the vector
     vector = [0, 0, 0]
@@ -43,7 +42,6 @@ def calNormalVector(p1, p2, p3):
     for i in range(3):
         vector[i] = vector[i] / sigma
     return np.array(vector).reshape(3, )
-
 
 def rotation_matrix(axis, theta):
     """
@@ -106,17 +104,13 @@ class StructurePreprocess(object):
         """
 
         self.dbname = dbname
+        self.json_path = path
         self.new_struct_dict = dict()
         for name in os.listdir(path):
-            if name.endswith('.cif'):
-                try:
-                    parser = CifParser(os.path.join(path, name))
-                    self.new_struct_dict[name.split('.')[0]] = parser.get_structures()[0]
-                except:  # noqa: E722 TODO Fix
-                    print(f"pymatgen cannot read in {name}, try ase now")
-                    atoms = read(os.path.join(path, name))
-                    self.new_struct_dict[name.split('.')[0]] = AseAtomsAdaptor.get_structure(atoms)
-        print("Loaded %d cif files." % (len(self.new_struct_dict.keys())))
+            if name.endswith('.json'):
+                with open(os.path.join(path, name), "r") as f:
+                    data = json.load(f)
+                self.new_struct_dict[name.split(".")[0]] = Structure.from_dict(data["geometry"]["wrong_crystal"])
 
     def load_matml_database(self, db):
         """
@@ -963,7 +957,7 @@ class StructurePreprocess(object):
                             appendStruct.append("H", eachH.coords, coords_are_cartesian=True)
                 print("now have the cif for:", structID)
                 # check if this crytal is correct
-                appendStruct.to(fmt='cif', filename=structID + '_' + str(cellsize) + '.cif')
+                appendStruct.to(fmt='cif', filename=self.json_path+"/"+structID + '_' + str(cellsize) + '.cif')
                 if appendStruct.num_sites % (len(center_frag_H_sites) + center_frag.num_sites) == 0:
                     self.new_struct_dict[structID] = appendStruct
                     correct = True
