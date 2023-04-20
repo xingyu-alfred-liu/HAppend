@@ -37,6 +37,13 @@ optional arguments:
   -ap ABSORPTION_PATH, --absorption_path ABSORPTION_PATH
                         target path to save absorption spectrum
 ```
+__Add Hydrogen to crystal__  
+In the `example` folder, to add the missing Hydrogen to a structure, using the example ABECAL, where all Hydrogen atoms were removed for demo purpose. Type in:
+
+```
+python perform_struct_preprocess.py
+```
+which will load in the `ABECAL_example.json` file, get the wrong structure, try to add the Hydrogen back on it, and produce a `.cif` file in the same location. Notice you do need pybabel, rdkit, etc to work. Details can be found in the `requirements.txt`.
 
 ### Data Detail
 __Bandstructure__
