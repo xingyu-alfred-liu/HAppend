@@ -45,11 +45,46 @@ python perform_struct_preprocess.py
 ```
 which will load in the `ABECAL_example.json` file, get the wrong structure, try to add the Hydrogen back on it, and produce a `.cif` file in the same location. Notice you do need pybabel, rdkit, etc to work. Details can be found in the `requirements.txt`.
 
-### Data Detail
-__Bandstructure__
+### Detail of the Data Structure
+This section below explains detail for each record following the same structure as saved in the .json files. 
+#### struct_id
+Material reference name, consistent with Cambridge Structural Database (CSD) reference name. 
+#### geometry
+Both the relaxed crystal structure and single molecule structure are saved under this key.  
+__relaxed\_crystal__   
+A dictionary format of pymatgen Structure.  
+__molecule__  
+A dictionary format of pymatgen Molecule.  
+#### dft 
+This section stores all the non-GWBSE values.  
 
-__Absorption__  
-Absorption has three directions `a`, `b`, and `c`, saved under the corresponding names. The four columns are, taken from BerkeleyGW output:   
+```
+bandgap: the crystal electronic band gap
+Et: the crystal triplet formation energy, calculated by the total energy difference between the ground-state and triplet-state crystal
+DF: the crystal DFT estimate for the SF driving force, calculated by taking the difference between bandgap and twice Et
+VBdisp: the valence band dispersion, calculated by the energy range of the HOMO-derived band
+CBdisp: the conduction band dispersion, calculated by the energy range of the LUMO-derived band
+hab: the transfer integral, calculated with fragment orbital DFT
+gap_s: the single molecule gap, calculated by the energy difference between highest occupied molecular orbital (HOMO) and lowest unoccupied molecular orbital (LUMO)
+Et_s: the single molecule triplet formation energy, calculated by the total energy difference between the ground-state and triplet-state molecule
+DF_s: the single molecule DFT estimate for the SF driving force, calculated by taking the difference between gap_s and twice Et_s
+IP_s: the single molecule ionization potential, calculated by the total energy difference between a cation and neutral molecule
+EA_s: the single molecule electron affinity, calculated by the total energy difference between an anion and neutral molecule
+polarisation: the trace of the polarization tensor for a single molecule, calculated with DFT using the PBE functional and many-body dispersion (MBD) method (PBE+MBD)
+apc: the number of atoms in the crystal unit cell
+density: the crystal density in amu Å^−3
+epsilon: the dielectric constant calculated with PBE+MBD
+weight_s: the molecular weight in atomic mass unit (amu)
+```
+#### gwbse
+__Es__  
+The optical gap for singlet-state exciton   
+__Et__  
+The optical gap for triplet-state exciton  
+__DF__  
+The singlet fission driving force calculated by subtract twice Et from Es  
+__absorption__  
+Absorption has three directions `a`, `b`, and `c`, saved under the path `data["gwbse"]["absorption"]["a"]` `data["gwbse"]["absorption"]["b"]` `data["gwbse"]["absorption"]["c"]`, respectively. The four columns are, taken from BerkeleyGW output:   
 
 ```
  # Column 1: omega  
@@ -57,4 +92,13 @@ Absorption has three directions `a`, `b`, and `c`, saved under the corresponding
  # Column 3: eps1(omega)  
  # Column 4: JDOS(omega)  
 ```
-The solar spectrum is also attached for comparison, under the path `data["gwbse"]["absorption"]["solar"]`.
+The solar spectrum is also attached for comparison, under the path `data["gwbse"]["absorption"]["solar"]`  
+__bandstructure__  
+The direct absorption from BerkeleyGW is named as `bandstructure.dat` with first two lines commented as
+
+```
+# spin      band      kx      ky      kz      E(MF)      E(QP)      Delta E
+#                  (Cartesian coordinates)     (eV)       (eV)         (eV)
+   
+```  
+The colomn kx, ky, kz indicates the coordinates of each k points, the quasi-partical energy is given in the column E(QP). These four columns are used to plot the bandstructure. Bandstructure is saved under `data['gwbse']['bandstructure']['val']`. The high symmetry points used to build the k path are saved in `data['gwbse']['bandstructure']['kpoints']`. Both values are saved as list.    
