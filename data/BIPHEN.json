@@ -1272,8 +1272,8 @@
         "weight_s": 154.0
     },
     "gwbse": {
-        "Es": null,
-        "Et": null,
+        "Es": 3.4126252,
+        "Et": 2.3572601,
         "DF": -1.301895,
         "absorption": {
             "a": [
