@@ -75,29 +75,29 @@ for name in os.listdir(relaxed_struct_path):
         d = json.load(f)
     data[name.split(".")[0]] = d
 
-target = "TERPHO02"
-targetpath = "tmp/"+"TERPHO02"
+target = "FLUANT02"
+targetpath = "FLUANT02"
 
-abs_a = np.loadtxt(os.path.join(targetpath, "4-a-absorption.dat"))
-abs_b = np.loadtxt(os.path.join(targetpath, "4-b-absorption.dat"))
-abs_c = np.loadtxt(os.path.join(targetpath, "4-c-absorption.dat"))
+abs_a = np.loadtxt(os.path.join(targetpath, "a-absorption_eh.dat"))
+abs_b = np.loadtxt(os.path.join(targetpath, "b-absorption_eh.dat"))
+abs_c = np.loadtxt(os.path.join(targetpath, "c-absorption_eh.dat"))
 
 data[target]["gwbse"]["absorption"]["a"] = abs_a.tolist()
 data[target]["gwbse"]["absorption"]["b"] = abs_b.tolist()
 data[target]["gwbse"]["absorption"]["c"] = abs_c.tolist()
 
-# banddata = np.loadtxt(os.path.join(targetpath, "bandstructure.dat"))
-# with open(os.path.join(targetpath, "kpoints")) as f:
-#     kpoints = f.readlines()
-# for i, n in enumerate(kpoints):
-#     # kpoints[i] = n[:-1]
-#     kpoints[i] = n.replace("\n", "")
-#     kpoints[i] = kpoints[i].replace("\t", "  ")
+banddata = np.loadtxt(os.path.join(targetpath, "bandstructure.dat"))
+with open(os.path.join(targetpath, "kpoints")) as f:
+    kpoints = f.readlines()
+for i, n in enumerate(kpoints):
+    # kpoints[i] = n[:-1]
+    kpoints[i] = n.replace("\n", "")
+    kpoints[i] = kpoints[i].replace("\t", "  ")
 
-# data[target]["gwbse"]["bandstructure"]["val"] = banddata.tolist()
-# data[target]["gwbse"]["bandstructure"]["kpoints"] = kpoints
+data[target]["gwbse"]["bandstructure"]["val"] = banddata.tolist()
+data[target]["gwbse"]["bandstructure"]["kpoints"] = kpoints
 
-# print(data[target]["gwbse"]["bandstructure"]["kpoints"])
+print(data[target]["gwbse"]["bandstructure"]["kpoints"])
 
 with open(target+"_new.json", "w") as f:
     json.dump(data[target], f, indent=4)
