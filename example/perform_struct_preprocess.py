@@ -1,4 +1,4 @@
-from pah101tools.struct_preprocess import StructurePreprocess
+from HAppend.struct_preprocess import StructurePreprocess
 from pymatgen.core import Element
 
 def call_struct_preprocess(new_struct_path, dbname):

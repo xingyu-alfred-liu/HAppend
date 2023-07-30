@@ -1,6 +1,6 @@
 import argparse
 
-from pah101tools.plot import PlotAgent
+from HAppend.plot import PlotAgent
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

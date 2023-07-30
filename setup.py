@@ -4,9 +4,9 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setup(
-        name='pah101tools',
+        name='HAppend',
         version='0.1.0',
-        description='Tools to reproduce plots in PAH101 dataset',
+        description='Tools to detect missing Hydrogen and fix it. Code also used to reproduce plots in PAH101 dataset',
         long_description=long_description,
         long_description_content_type="text/markdown",
         author='Xingyu (Alfred) Liu',
