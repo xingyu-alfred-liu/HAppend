@@ -3335,7 +3335,8 @@
         "chemical_formula": {
             "C": 50,
             "H": 44
-        }
+        },
+        "relax_code": "FHI-aims"
     },
     "dft": {
         "bandgap": 0.81512687,

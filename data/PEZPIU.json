@@ -4985,7 +4985,8 @@
         "chemical_formula": {
             "C": 32,
             "H": 20
-        }
+        },
+        "relax_code": "CASTEP"
     },
     "dft": {
         "bandgap": 1.821,
