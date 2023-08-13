@@ -12581,6 +12581,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 78,
+            "H": 54
         }
     },
     "dft": {

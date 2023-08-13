@@ -3331,6 +3331,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 50,
+            "H": 44
         }
     },
     "dft": {

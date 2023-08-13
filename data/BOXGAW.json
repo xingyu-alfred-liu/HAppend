@@ -5361,6 +5361,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 38,
+            "H": 18
         }
     },
     "dft": {

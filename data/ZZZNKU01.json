@@ -2901,6 +2901,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 30,
+            "H": 22
         }
     },
     "dft": {

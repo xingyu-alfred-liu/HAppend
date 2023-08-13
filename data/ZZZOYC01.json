@@ -2021,6 +2021,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 22,
+            "H": 14
         }
     },
     "dft": {

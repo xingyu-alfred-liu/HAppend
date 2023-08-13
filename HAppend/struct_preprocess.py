@@ -5,8 +5,6 @@ import math
 import json
 from ase.io import read
 from pymatgen.core import Structure, Molecule, Site
-# from pymatgen.io.cif import CifParser
-# from pymatgen.io.ase import AseAtomsAdaptor
 from pymatgen.io.babel import BabelMolAdaptor
 from pymatgen.core.periodic_table import Element, DummySpecie
 from pymatgen.analysis.structure_matcher import StructureMatcher, SpeciesComparator
@@ -62,7 +60,7 @@ def rotation_matrix(axis, theta):
 class StructurePreprocess(object):
     """
     Notes:
-        1. self.new_struct_dict should keep the format,
+        1. self.new_struct_dict should keep the formabondt,
            key: original db id
            value: pymatgen structure
         2. adding Hydrogen function is not rubust,
@@ -106,11 +104,13 @@ class StructurePreprocess(object):
         self.dbname = dbname
         self.json_path = path
         self.new_struct_dict = dict()
+        self.new_struct_formula = dict()
         for name in os.listdir(path):
             if name.endswith('.json'):
                 with open(os.path.join(path, name), "r") as f:
                     data = json.load(f)
                 self.new_struct_dict[name.split(".")[0]] = Structure.from_dict(data["geometry"]["wrong_crystal"])
+                self.new_struct_formula[name.split(".")[0]] = data["geometry"]["chemical_formula"]
 
     def load_matml_database(self, db):
         """
@@ -342,7 +342,7 @@ class StructurePreprocess(object):
         print("Found %d co-crystals." % (len(self._cocrystal_names)))
         return self._cocrystal_names
 
-    def valid_check(self, out=False, double_check=False, invalidFragDict=False):  # noqa: C901 TODO Fix
+    def valid_check(self, out=False, double_check=False, invalidFragDict=False):
         """
         check if this material is correct
         use rdkit to see if this can be loaded
@@ -424,7 +424,7 @@ class StructurePreprocess(object):
                     self.bad_struct_dict[key] = self.new_struct_dict[key]
                     del self.new_struct_dict[key]
                     continue
-                except:  # noqa: E722 TODO Fix
+                except:
                     continue
             wrongAtomIdx = []
             wrongAtomHybrid = []
@@ -513,7 +513,7 @@ class StructurePreprocess(object):
             # self._added_H_sites_dict
             try:
                 self.move_bad_from_new(bad_names=self._invalid_key_doublecheck)
-            except:  # noqa: E722 TODO Fix
+            except:
                 pass
             for structID in self._invalid_key_doublecheck:
                 del self._added_H_sites_dict[structID]
@@ -567,75 +567,6 @@ class StructurePreprocess(object):
         print("Get %d complete fragments." % (len(fragmentListAll)))
         return fragmentListAll
 
-        # fragmentListAll = []
-        # struct_super = struct.copy()
-        # translate = np.sum(struct.lattice.matrix, 0)
-        # struct_super.make_supercell([3, 3, 3])
-        # bond_dict = getBondDict(struct_super, bondCutoff)
-        # for i, originSite in enumerate(struct.sites):
-        #     translatedSiteCoords = originSite.coords + translate
-        #     for j, superSite in enumerate(struct_super.sites):
-        #         if np.linalg.norm(translatedSiteCoords-superSite.coords) < 0.1:
-        #             middleSite = superSite
-        #             middleSiteIndex = j
-        #             break
-        #     single_mol = getSingleMol(struct_super, middleSite, bond_dict, \
-        #                     middleSiteIndex, printMol=False)
-        #     species = []
-        #     position = []
-        #     for k, site in single_mol.items():
-        #         species.append(str(site.specie))
-        #         position.append(site.coords-translate)
-        #     # struct_super.remove_sites(single_mol.keys())
-        #     outmol = Molecule(species, position)
-        #     fragmentListAll.append(outmol)
-        # print("Found %d complete fragments." %(len(fragmentListAll)))
-        # fragList = []
-        # for mol in fragmentListAll:
-        #     exist=False
-        #     for frag in fragList:
-        #         if np.linalg.norm(frag.center_of_mass-mol.center_of_mass) < 0.01:
-        #             exist = True
-        #             break
-        #     if not exist:
-        #         fragList.append(mol)
-        # tmpmolList = []
-        # for x in [-1, 0, 1]:
-        #     for y in [-1, 0, 1]:
-        #         for z in [-1, 0, 1]:
-        #             if [x,y,z] == [0,0,0]:
-        #                 continue
-        #             transVec = np.sum(struct.lattice.matrix * [x, y, z], 0)
-        #             transVec = np.concatenate((transVec, np.array([1]).reshape(1,)), 0)
-        #             rotationMatrix = np.zeros((4, 3), int)
-        #             np.fill_diagonal(rotationMatrix, 1)
-        #             affineMatrix = np.concatenate((rotationMatrix, transVec.reshape(-1, 1)), 1)
-        #             symOp = SymmOp(affineMatrix)
-        #             for frag in fragList:
-        #                 species = []
-        #                 coords = []
-        #                 for site in frag.sites:
-        #                     species.append(site.specie)
-        #                     coords.append(symOp.operate(site.coords))
-        #                 tmpmolList.append(Molecule(species, coords))
-        # for fragx in tmpmolList[:]:
-        #     for fragy in fragList:
-        #         if np.linalg.norm(fragx.center_of_mass-fragy.center_of_mass) < 1:
-        #             tmpmolList.remove(fragx)
-        # dellist = []
-        # for i, fragx in enumerate(tmpmolList):
-        #     for j in range(i+1, len(tmpmolList)):
-        #         fragy = tmpmolList[j]
-        #         if np.linalg.norm(fragx.center_of_mass-fragy.center_of_mass) < 1:
-        #             dellist.append(fragy)
-        # for frag in dellist:
-        #     try:
-        #         tmpmolList.remove(frag)
-        #     except:
-        #         pass
-        # fragList += tmpmolList
-        # return fragList
-
     def get_bonded_neighbors(self, pmgmol, bond_dict, siteID, bond_length_max):
         bonded_neighbor = []
         wrongSite = pmgmol.sites[siteID]
@@ -647,7 +578,7 @@ class StructurePreprocess(object):
                 bonded_neighbor.append(neighbor[0])
         return bonded_neighbor
 
-    @staticmethod  # noqa: C901 TODO Fix
+    @staticmethod
     def add_Hydrogen_Site(wrongSite, hybrid, neighbors, hydrogenBondLength, key, siteID, com, mol, bond_dict):
         """
         Args:
@@ -909,6 +840,40 @@ class StructurePreprocess(object):
             if out:
                 return _fragDictH
 
+    def check_chemical_formula(self, appendStruct, struct_formula):
+        """
+        check if the resulted structure is correct based on the structure formula
+        Args:
+            appendStruct (pymatgen.core.Structure): fixed pmg structure
+            struct_formula (dict): the chemical formula collected from CSD
+        Returns:
+            (bool): if the fixed structure passed this check
+        """
+        total_sites = sum([v for k, v in struct_formula.items()])
+        element_check = True
+        for site in appendStruct.sites:
+            if site.species_string not in struct_formula.keys():
+                element_check = False
+                break
+        if element_check is True:
+            crystal_species = {k: 0 for k in struct_formula.keys()}
+            for site in appendStruct.sites:
+                crystal_species[site.species_string] += 1
+        species_check = True
+        for k in crystal_species.keys():
+            if crystal_species[k] % struct_formula[k] != 0:
+                species_check = False
+                break
+        if len(appendStruct.sites) % total_sites == 0:
+            total_sites_check = True
+        else:
+            total_sites_check = False
+        if all([total_sites_check, species_check, element_check]):
+            return True
+        else:
+            return False
+
+
     def add_Hydrogen_Structure(self, added_H_sites_dict=None):  # noqa: C901 TODO Fix
         """
         Args:
@@ -958,7 +923,11 @@ class StructurePreprocess(object):
                 print("now have the cif for:", structID)
                 # check if this crytal is correct
                 appendStruct.to(fmt='cif', filename=self.json_path+"/"+structID + '_' + str(cellsize) + '.cif')
-                if appendStruct.num_sites % (len(center_frag_H_sites) + center_frag.num_sites) == 0:
+                # also check if the chemical formula is consistent with the result
+                formula_check = True
+                if structID in self.new_struct_formula.keys() and self.new_struct_formula[structID] is not None:
+                    formula_check = self.check_chemical_formula(appendStruct, self.new_struct_formula[structID])
+                if appendStruct.num_sites % (len(center_frag_H_sites) + center_frag.num_sites) == 0 and formula_check is True:
                     self.new_struct_dict[structID] = appendStruct
                     correct = True
                     break
@@ -970,7 +939,7 @@ class StructurePreprocess(object):
             print(wrong_list)
             self._still_wrong_after_add_H = wrong_list
 
-    def generate_document(self, struct_dict=None):  # noqa: C901 TODO Fix
+    def generate_document(self, struct_dict=None):
         """
         Notice, should insert all necessary keys and leave
         values as None, e.g., relaxed geometry should all be None
@@ -1132,15 +1101,6 @@ class StructurePreprocess(object):
                 if not specified, the self.new_struct_dict will
                 be stored
         """
-        # if doc is None:
-        #     doc = self.new_struct_dict
-        # print("Saving these structs...")
-        # for name, data in doc.items():
-        #     print(name)
-        #     self.matml_db._collection.insert_one(data)
-
-        # -- TEMPORARY STORE AS JSON -- #
-        # -- delete after mongo is available -- #
         if doc is None:
             doc = self.new_struct_dict
         print("Saving structs...")

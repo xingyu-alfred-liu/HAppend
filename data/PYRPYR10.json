@@ -4411,6 +4411,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 30,
+            "H": 16
         }
     },
     "dft": {
