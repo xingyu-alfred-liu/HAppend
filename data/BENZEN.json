@@ -1181,6 +1181,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 6,
+            "H": 6
         }
     },
     "dft": {

@@ -1911,6 +1911,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 20,
+            "H": 14
         }
     },
     "dft": {

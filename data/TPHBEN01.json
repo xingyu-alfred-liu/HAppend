@@ -4031,6 +4031,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 24,
+            "H": 18
         }
     },
     "dft": {

@@ -8070,6 +8070,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 84,
+            "H": 52
         }
     },
     "dft": {

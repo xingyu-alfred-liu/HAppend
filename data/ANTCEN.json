@@ -1361,6 +1361,10 @@
                     "properties": {}
                 }
             ]
+        },
+        "chemical_formula": {
+            "C": 14,
+            "H": 10
         }
     },
     "dft": {
