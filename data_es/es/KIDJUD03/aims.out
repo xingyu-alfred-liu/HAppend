@@ -1,0 +1,3402 @@
+  MPI-parallelism will be employed.
+------------------------------------------------------------
+          Invoking FHI-aims ...
+          Version 180607
+          Git rev. (modified): 6724847 Fix JSON memory corruption in scf_solver
+          Compiled on 2018/06/27 at 16:00:31 on host coe.psc.edu.
+
+          When using FHI-aims, please cite the following reference:
+
+          Volker Blum, Ralf Gehrke, Felix Hanke, Paula Havu,
+          Ville Havu, Xinguo Ren, Karsten Reuter, and Matthias Scheffler,
+          'Ab Initio Molecular Simulations with Numeric Atom-Centered Orbitals',
+          Computer Physics Communications 180, 2175-2196 (2009)
+
+          For any questions about FHI-aims, please visit the aimsclub website
+          with its forums and wiki. Contributions to both the forums and the
+          wiki are warmly encouraged - they are for you, and everyone is welcome there.
+
+------------------------------------------------------------
+
+
+
+  Date     :  20210620, Time     :  172651.836
+  Time zero on CPU 1             :   0.210188000000000E+00  s.
+  Internal wall clock time zero  :           393442011.836  s.
+
+  FHI-aims created a unique identifier for this run for later identification
+  aims_uuid : 0B1B4460-77EE-4202-A650-0B57746D8D6B
+
+  Using       56 parallel tasks.
+  Task        0 on host d021 reporting.
+  Task        1 on host d021 reporting.
+  Task        2 on host d021 reporting.
+  Task        3 on host d021 reporting.
+  Task        4 on host d021 reporting.
+  Task        5 on host d021 reporting.
+  Task        6 on host d021 reporting.
+  Task        7 on host d021 reporting.
+  Task        8 on host d021 reporting.
+  Task        9 on host d021 reporting.
+  Task       10 on host d021 reporting.
+  Task       11 on host d021 reporting.
+  Task       12 on host d021 reporting.
+  Task       13 on host d021 reporting.
+  Task       14 on host d021 reporting.
+  Task       15 on host d021 reporting.
+  Task       16 on host d021 reporting.
+  Task       17 on host d021 reporting.
+  Task       18 on host d021 reporting.
+  Task       19 on host d021 reporting.
+  Task       20 on host d021 reporting.
+  Task       21 on host d021 reporting.
+  Task       22 on host d021 reporting.
+  Task       23 on host d021 reporting.
+  Task       24 on host d021 reporting.
+  Task       25 on host d021 reporting.
+  Task       26 on host d021 reporting.
+  Task       27 on host d021 reporting.
+  Task       28 on host d021 reporting.
+  Task       29 on host d021 reporting.
+  Task       30 on host d021 reporting.
+  Task       31 on host d021 reporting.
+  Task       32 on host d021 reporting.
+  Task       33 on host d021 reporting.
+  Task       34 on host d021 reporting.
+  Task       35 on host d021 reporting.
+  Task       36 on host d021 reporting.
+  Task       37 on host d021 reporting.
+  Task       38 on host d021 reporting.
+  Task       39 on host d021 reporting.
+  Task       40 on host d021 reporting.
+  Task       41 on host d021 reporting.
+  Task       42 on host d021 reporting.
+  Task       43 on host d021 reporting.
+  Task       44 on host d021 reporting.
+  Task       45 on host d021 reporting.
+  Task       46 on host d021 reporting.
+  Task       47 on host d021 reporting.
+  Task       48 on host d021 reporting.
+  Task       49 on host d021 reporting.
+  Task       50 on host d021 reporting.
+  Task       51 on host d021 reporting.
+  Task       52 on host d021 reporting.
+  Task       53 on host d021 reporting.
+  Task       54 on host d021 reporting.
+  Task       55 on host d021 reporting.
+
+  Performing system and environment tests:
+  *** Environment variable OMP_NUM_THREADS is not set
+  *** For performance reasons you might want to set it to 1
+  | Stacksize not measured: no C compiler
+  | Checking for scalapack...
+  | Testing pdtran()...
+  | All pdtran() tests passed.
+
+  Obtaining array dimensions for all initial allocations:
+  
+  -----------------------------------------------------------------------
+  Parsing control.in (first pass over file, find array dimensions only).
+  The contents of control.in will be repeated verbatim below
+  unless switched off by setting 'verbatim_writeout .false.' .
+  in the first line of control.in .
+  -----------------------------------------------------------------------
+  
+  #===============================================================================
+  # FHI-aims file: ./Runs/es/control.in
+  # Created using the Atomic Simulation Environment (ASE)
+  # Mon Jan 13 16:04:38 2020
+  #===============================================================================
+  xc                                 pbe
+  relativistic                       zora scalar 1e-12
+  occupation_type                    gaussian 0.0001
+  load_balancing                     .true.
+  KS_method                          scalapack_fast
+  mixer                              pulay
+  n_max_pulay                        5
+  charge_mix_param                   0.4
+  sc_accuracy_etot                   1e-6
+  sc_accuracy_eev                    1e-4
+  sc_accuracy_rho                    1e-6
+  sc_iter_limit                      100
+  prodbas_threshold                  1e-4
+  basis_threshold                    1e-5
+  override_illconditioning           .true.
+  use_logsbt                         .true.
+  spin                               none
+  charge                             0
+  #===============================================================================
+  
+  ################################################################################
+  #
+  #  FHI-aims code project
+  # Volker Blum, Fritz Haber Institute Berlin, 2009
+  #
+  #  Suggested "tight" defaults for H atom (to be pasted into control.in file)
+  #
+  ################################################################################
+    species        H
+  #     global species definitions
+      nucleus             1
+      mass                1.00794
+  #
+      l_hartree           6
+  #
+      cut_pot             4.0  2.0  1.0
+      basis_dep_cutoff    1e-4
+  #
+      radial_base         24 7.0
+      radial_multiplier   2
+      angular_grids       specified
+        division   0.1930   50
+        division   0.3175  110
+        division   0.4293  194
+        division   0.5066  302
+        division   0.5626  434
+  #      division   0.5922  590
+  #      division   0.6227  974
+  #      division   0.6868 1202
+  #      outer_grid  770
+        outer_grid  434
+  ################################################################################
+  #
+  #  Definition of "minimal" basis
+  #
+  ################################################################################
+  #     valence basis states
+      valence      1  s   1.
+  #     ion occupancy
+      ion_occ      1  s   0.5
+  ################################################################################
+  #
+  #  Suggested additional basis functions. For production calculations,
+  #  uncomment them one after another (the most important basis functions are
+  #  listed first).
+  #
+  #  Basis constructed for dimers: 0.5 A, 0.7 A, 1.0 A, 1.5 A, 2.5 A
+  #
+  ################################################################################
+  #  "First tier" - improvements: -1014.90 meV to -62.69 meV
+       hydro 2 s 2.1
+       hydro 2 p 3.5
+  #  "Second tier" - improvements: -12.89 meV to -1.83 meV
+       hydro 1 s 0.85
+       hydro 2 p 3.7
+       hydro 2 s 1.2
+       hydro 3 d 7
+  #  "Third tier" - improvements: -0.25 meV to -0.12 meV
+  #     hydro 4 f 11.2
+  #     hydro 3 p 4.8
+  #     hydro 4 d 9
+  #     hydro 3 s 3.2
+  ################################################################################
+  #
+  # For methods that use the localized form of the "resolution of identity" for
+  # the two-electron Coulomb operator (RI_method LVL), particularly Hartree-Fock and
+  # hybrid density functional calculations, the highest accuracy can be obtained by
+  # uncommenting the line beginning with "for_aux"  below, thus adding an extra g radial
+  # function to the construction of the product basis set for the expansion.
+  # See Ref. New J. Phys. 17, 093020 (2015) for more information, particularly Figs. 1 and 6.
+  #
+  ################################################################################
+  #
+  # for_aux hydro 5 g 6.0
+  ################################################################################
+  #
+  #  FHI-aims code project
+  # Volker Blum, Fritz Haber Institute Berlin, 2009
+  #
+  #  Suggested "tight" defaults for C atom (to be pasted into control.in file)
+  #
+  ################################################################################
+    species        C
+  #     global species definitions
+      nucleus             6
+      mass                12.0107
+  #
+      l_hartree           6
+  #
+      cut_pot             4.0  2.0  1.0
+      basis_dep_cutoff    1e-4
+  #
+      radial_base         34 7.0
+      radial_multiplier   2
+      angular_grids specified
+        division   0.2187   50
+        division   0.4416  110
+        division   0.6335  194
+        division   0.7727  302
+        division   0.8772  434
+  #      division   0.9334  590
+  #      division   0.9924  770
+  #      division   1.0230  974
+  #      division   1.5020 1202
+  #     outer_grid  974
+        outer_grid  434
+  ################################################################################
+  #
+  #  Definition of "minimal" basis
+  #
+  ################################################################################
+  #     valence basis states
+      valence      2  s   2.
+      valence      2  p   2.
+  #     ion occupancy
+      ion_occ      2  s   1.
+      ion_occ      2  p   1.
+  ################################################################################
+  #
+  #  Suggested additional basis functions. For production calculations,
+  #  uncomment them one after another (the most important basis functions are
+  #  listed first).
+  #
+  #  Constructed for dimers: 1.0 A, 1.25 A, 1.5 A, 2.0 A, 3.0 A
+  #
+  ################################################################################
+  #  "First tier" - improvements: -1214.57 meV to -155.61 meV
+       hydro 2 p 1.7
+       hydro 3 d 6
+       hydro 2 s 4.9
+  #  "Second tier" - improvements: -67.75 meV to -5.23 meV
+       hydro 4 f 9.8
+       hydro 3 p 5.2
+       hydro 3 s 4.3
+       hydro 5 g 14.4
+       hydro 3 d 6.2
+  #  "Third tier" - improvements: -2.43 meV to -0.60 meV
+  #     hydro 2 p 5.6
+  #     hydro 2 s 1.4
+  #     hydro 3 d 4.9
+  #     hydro 4 f 11.2
+  #  "Fourth tier" - improvements: -0.39 meV to -0.18 meV
+  #     hydro 2 p 2.1
+  #     hydro 5 g 16.4
+  #     hydro 4 d 13.2
+  #     hydro 3 s 13.6
+  #     hydro 4 f 17.6
+  #  Further basis functions - improvements: -0.08 meV and below
+  #     hydro 3 s 2
+  #     hydro 3 p 6
+  #     hydro 4 d 20
+  ################################################################################
+  #
+  # For methods that use the localized form of the "resolution of identity" for
+  # the two-electron Coulomb operator (RI_method LVL), particularly Hartree-Fock and
+  # hybrid density functional calculations, the highest accuracy can be obtained by
+  # uncommenting the line beginning with "for_aux"  below, thus adding an extra g radial
+  # function to the construction of the product basis set for the expansion.
+  # See Ref. New J. Phys. 17, 093020 (2015) for more information, particularly Figs. 1 and 6.
+  #
+  ################################################################################
+  #
+  # for_aux hydro 5 g 6.0
+  
+  -----------------------------------------------------------------------
+  Completed first pass over input file control.in .
+  -----------------------------------------------------------------------
+  
+  
+  -----------------------------------------------------------------------
+  Parsing geometry.in (first pass over file, find array dimensions only).
+  The contents of geometry.in will be repeated verbatim below
+  unless switched off by setting 'verbatim_writeout .false.' .
+  in the first line of geometry.in .
+  -----------------------------------------------------------------------
+  
+  #=======================================================
+  # FHI-aims file: geometry.in
+  # Created using the Atomic Simulation Environment (ASE)
+  # Sun Jun 20 15:47:01 2021
+  #=======================================================
+  atom 13.7982049999999994 15.1961639999999996 22.7703479999999985 H
+  atom 14.7770320000000002 15.6705539999999992 22.8309719999999992 C
+  atom 15.7680609999999994 15.0955589999999997 23.5793849999999985 C
+  atom 15.0037149999999997 16.8418160000000015 22.1463789999999996 C
+  atom 15.5781430000000007 14.1757519999999992 24.1309770000000015 H
+  atom 17.0108159999999984 15.6897420000000007 23.6250590000000003 C
+  atom 14.2017860000000002 17.2875540000000001 21.5571550000000016 H
+  atom 16.2538909999999994 17.4586790000000001 22.1788559999999997 C
+  atom 17.8037880000000008 15.2451380000000007 24.2276859999999985 H
+  atom 17.2602499999999992 16.8547259999999994 22.9232480000000010 C
+  atom 16.5102420000000016 18.7106729999999999 21.4178649999999990 C
+  atom 18.2386890000000008 17.3329360000000001 22.9798499999999990 H
+  atom 15.7997270000000007 19.9049070000000015 21.6591220000000000 C
+  atom 17.4496360000000017 18.6895820000000015 20.3875729999999997 C
+  atom 14.8168930000000003 20.0413679999999985 22.7722039999999986 C
+  atom 16.0649860000000011 21.0068610000000007 20.8529720000000012 C
+  atom 17.9562230000000014 17.7489680000000014 20.1700289999999995 H
+  atom 17.7148959999999995 19.7915349999999997 19.5814230000000009 C
+  atom 13.5645900000000008 20.5933640000000011 22.5284730000000017 C
+  atom 15.1422659999999993 19.6970260000000010 24.0808700000000009 C
+  atom 15.5584000000000007 21.9474750000000007 21.0705160000000014 H
+  atom 17.0043800000000012 20.9857699999999987 19.8226809999999993 C
+  atom 18.6977300000000000 19.6550750000000001 18.4683409999999988 C
+  atom 13.2878640000000008 20.8602440000000016 21.5100370000000005 H
+  atom 12.6618779999999997 20.7965230000000005 23.5483510000000003 C
+  atom 14.2430409999999998 19.9111109999999982 25.1104400000000005 C
+  atom 16.1202369999999995 19.2704680000000010 24.3011979999999994 H
+  atom 17.2607309999999998 22.2377639999999985 19.0616890000000012 C
+  atom 18.3723559999999999 19.9994160000000001 17.1596750000000000 C
+  atom 19.9500320000000002 19.1030790000000010 18.7120730000000002 C
+  atom 11.6859970000000004 21.2225220000000014 23.3208069999999985 H
+  atom 12.9944559999999996 20.4645089999999996 24.8448509999999985 C
+  atom 14.5135369999999995 19.6343490000000003 26.1271230000000010 H
+  atom 16.2543730000000011 22.8417169999999992 18.3172980000000010 C
+  atom 18.5109080000000006 22.8546270000000007 19.0941660000000013 C
+  atom 17.3943849999999998 20.4259750000000011 16.9393479999999990 H
+  atom 19.2715810000000012 19.7853320000000004 16.1301050000000004 C
+  atom 20.8527440000000013 18.8999200000000016 17.6921940000000006 C
+  atom 20.2267590000000013 18.8361979999999996 19.7305080000000004 H
+  atom 12.2873520000000003 20.6217399999999991 25.6591459999999998 H
+  atom 15.2759339999999995 22.3635069999999985 18.2606949999999983 H
+  atom 16.5038060000000009 24.0067009999999996 17.6154870000000017 C
+  atom 19.3128369999999983 22.4088889999999985 19.6833910000000003 H
+  atom 18.7375900000000009 24.0258889999999994 18.4095730000000017 C
+  atom 19.0010860000000008 20.0620939999999983 15.1134229999999992 H
+  atom 20.5201670000000007 19.2319339999999990 16.3956939999999989 C
+  atom 21.8286249999999988 18.4739210000000007 17.9197389999999999 H
+  atom 15.7108349999999994 24.4513050000000014 17.0128589999999988 H
+  atom 17.7465620000000008 24.6008829999999996 17.6611599999999989 C
+  atom 19.7164169999999999 24.5002789999999990 18.4701969999999989 H
+  atom 21.2272700000000007 19.0747029999999995 15.5814000000000004 H
+  atom 17.9364789999999985 25.5206909999999993 17.1095679999999994 H
+  
+  -----------------------------------------------------------------------
+  Completed first pass over input file geometry.in .
+  -----------------------------------------------------------------------
+  
+
+  Basic array size parameters:
+  | Number of species                 :        2
+  | Number of atoms                   :       52
+  | Max. basis fn. angular momentum   :        4
+  | Max. atomic/ionic basis occupied n:        2
+  | Max. number of basis fn. types    :        2
+  | Max. radial fns per species/type  :        8
+  | Max. logarithmic grid size        :     1277
+  | Max. radial integration grid size :       69
+  | Max. angular integration grid size:      434
+  | Max. angular grid division number :        8
+  | Radial grid for Hartree potential :     1277
+  | Number of spin channels           :        1
+
+------------------------------------------------------------
+          Reading file control.in.
+------------------------------------------------------------
+  XC: Using PBE gradient-corrected functionals.
+  Scalar relativistic treatment of kinetic energy: ZORA.
+  Threshold value for ZORA:   0.100000E-11
+  Occupation type: Gaussian broadening, width =   0.100000E-03 eV.
+  Since 'load_balancing .true.' is present in control.in, automatically turning on 'use_local_index .true.'.
+  Using load balancing for integrations.
+  Kohn-Sham electronic structure solved by the ELSI library.
+  Using pulay charge density mixing.
+  Pulay mixing - number of memorized iterations:    5
+  Charge density mixing - mixing parameter:     0.4000
+  Convergence accuracy of total energy:  0.1000E-05
+  Convergence accuracy of sum of eigenvalues:  0.1000E-03
+  Convergence accuracy of self-consistent charge density:  0.1000E-05
+  Maximum number of s.-c. iterations  :   100
+  * Ignoring prodbas_threshold
+  Threshold for basis singularities:  0.1000E-04
+  override_illconditioning: Explicitly overriding any built-in checks for an ill-conditioned overlap matrix.
+  *** WARNING: If you use this flag, you should really know what you are doing.
+  *** DO NOT keep this flag set by default in all your control.in files.
+  Using 1D integrations for auxiliary 2-center integrals.
+  Spin treatment: No spin polarisation.
+  Charge =   0.000000E+00: Neutral system requested explicitly.
+ 
+  Reading configuration options for species H                   .
+  | Found nuclear charge :   1.0000
+  | Found atomic mass :    1.00794000000000      amu
+  | Found l_max for Hartree potential  :   6
+  | Found cutoff potl. onset [A], width [A], scale factor :    4.00000    2.00000    1.00000
+  | Threshold for basis-dependent cutoff potential is   0.100000E-03
+  | Found data for basic radial integration grid :    24 points, outermost radius =    7.000 A
+  | Found multiplier for basic radial grid :   2
+  | Found angular grid specification: user-specified.
+  | Specified grid contains     6 separate shells.
+  | Check grid settings after all constraints further below.
+  | Found free-atom valence shell :  1 s   1.000
+  | No ionic wave fns used. Skipping ion_occ.
+  | Found hydrogenic basis function :  2 s   2.100
+  | Found hydrogenic basis function :  2 p   3.500
+  | Found hydrogenic basis function :  1 s   0.850
+  | Found hydrogenic basis function :  2 p   3.700
+  | Found hydrogenic basis function :  2 s   1.200
+  | Found hydrogenic basis function :  3 d   7.000
+  Species H                   : Missing cutoff potential type.
+  Defaulting to exp(1/x)/(1-x)^2 type cutoff potential.
+  Species H : No 'logarithmic' tag. Using default grid for free atom:
+  | Default logarithmic grid data [bohr] : 0.1000E-03 0.1000E+03 0.1012E+01
+  Species H : On-site basis accuracy parameter (for Gram-Schmidt orthonormalisation) not specified.
+  Using default value basis_acc =  0.1000000E-03.
+  Species H                   : Using default innermost maximum threshold i_radial=  2 for radial functions.
+  Species H                   : Default cutoff onset for free atom density etc. : 0.40000000E+01 AA.
+  Species H                   : Basic radial grid will be enhanced according to radial_multiplier =   2, to contain    49 grid points.
+ 
+  Reading configuration options for species C                   .
+  | Found nuclear charge :   6.0000
+  | Found atomic mass :    12.0107000000000      amu
+  | Found l_max for Hartree potential  :   6
+  | Found cutoff potl. onset [A], width [A], scale factor :    4.00000    2.00000    1.00000
+  | Threshold for basis-dependent cutoff potential is   0.100000E-03
+  | Found data for basic radial integration grid :    34 points, outermost radius =    7.000 A
+  | Found multiplier for basic radial grid :   2
+  | Found angular grid specification: user-specified.
+  | Specified grid contains     6 separate shells.
+  | Check grid settings after all constraints further below.
+  | Found free-atom valence shell :  2 s   2.000
+  | Found free-atom valence shell :  2 p   2.000
+  | No ionic wave fns used. Skipping ion_occ.
+  | No ionic wave fns used. Skipping ion_occ.
+  | Found hydrogenic basis function :  2 p   1.700
+  | Found hydrogenic basis function :  3 d   6.000
+  | Found hydrogenic basis function :  2 s   4.900
+  | Found hydrogenic basis function :  4 f   9.800
+  | Found hydrogenic basis function :  3 p   5.200
+  | Found hydrogenic basis function :  3 s   4.300
+  | Found hydrogenic basis function :  5 g  14.400
+  | Found hydrogenic basis function :  3 d   6.200
+  Species C                   : Missing cutoff potential type.
+  Defaulting to exp(1/x)/(1-x)^2 type cutoff potential.
+  Species C : No 'logarithmic' tag. Using default grid for free atom:
+  | Default logarithmic grid data [bohr] : 0.1000E-03 0.1000E+03 0.1012E+01
+  Species C : On-site basis accuracy parameter (for Gram-Schmidt orthonormalisation) not specified.
+  Using default value basis_acc =  0.1000000E-03.
+  Species C                   : Using default innermost maximum threshold i_radial=  2 for radial functions.
+  Species C                   : Default cutoff onset for free atom density etc. : 0.40000000E+01 AA.
+  Species C                   : Basic radial grid will be enhanced according to radial_multiplier =   2, to contain    69 grid points.
+ 
+  Finished reading input file 'control.in'. Consistency checks are next.
+ 
+  MPI_IN_PLACE appears to work with this MPI implementation.
+  | Keeping use_mpi_in_place .true. (see manual).
+  Target number of points in a grid batch is not set. Defaulting to  100
+  Method for grid partitioning is not set. Defaulting to parallel hash+maxmin partitioning.
+  Batch size limit is not set. Defaulting to    200
+  By default, will store active basis functions for each batch.
+  If in need of memory, prune_basis_once .false. can be used to disable this option.
+  communication_type for Hartree potential was not specified.
+  Defaulting to calc_hartree .
+  Pulay mixer: Number of initial linear mixing iterations not set.
+  Defaulting to    0 iterations.
+  Work space size for distributed Hartree potential not set.
+  Defaulting to   0.200000E+03 MB.
+  Algorithm-dependent basis array size parameters:
+  | n_max_pulay                         :        5
+  Presetting      1001 iterations before the initial mixing cycle
+  is restarted anyway using the sc_init_iter criterion / keyword.
+  Presetting a factor      1.000 between actual scf density residual
+  and density convergence criterion sc_accuracy_rho below which sc_init_iter
+  takes no effect.
+  Calculation of forces was not defined in control.in. No forces will be calculated.
+  Geometry relaxation not requested: no relaxation will be performed.
+  No accuracy limit for integral partition fn. given. Defaulting to  0.1000E-14.
+  No threshold value for u(r) in integrations given. Defaulting to  0.1000E-05.
+  No accuracy for occupation numbers given. Defaulting to  0.1000E-12.
+  No threshold value for occupation numbers given. Defaulting to  0.0000E+00.
+  No accuracy for fermi level given. Defaulting to  0.1000E-19.
+  Maximum # of iterations to find E_F not set. Defaulting to  200.
+  Will not use alltoall communication since running on < 1024 CPUs.
+  partition_type (choice of integration weights) for integrals was not specified.
+  | Using a version of the partition function of Stratmann and coworkers ('stratmann_sparse').
+  | At each grid point, the set of atoms used to build the partition table is smoothly restricted to
+  | only those atoms whose free-atom density would be non-zero at that grid point.
+  Partitioning for Hartree potential was not defined. Using partition_type for integrals.
+  | Adjusted default value of keyword multip_moments_threshold to:       0.10000000E-11
+  | This value may affect high angular momentum components of the Hartree potential in periodic systems.
+  No q(lm)/r^(l+1) cutoff set for long-range Hartree potential.
+  | Using default value of  0.100000E-09 .
+  | Verify using the multipole_threshold keyword.
+  Defaulting to new monopole extrapolation.
+  Density update method: automatic selection selected.
+ * Warning: use_local_index and/or load_balancing needs packed_matrix_format = index
+ * Changing the default setting to packed_matrix_format = index
+------------------------------------------------------------
+
+
+------------------------------------------------------------
+          Reading geometry description geometry.in.
+------------------------------------------------------------
+  Input structure read successfully.
+  The structure contains       52 atoms,  and a total of        202.000 electrons.
+
+  Input geometry:
+  | No unit cell requested.
+  | Atomic structure:
+  |       Atom                x [A]            y [A]            z [A]
+  |    1: Species H            13.79820500       15.19616400       22.77034800
+  |    2: Species C            14.77703200       15.67055400       22.83097200
+  |    3: Species C            15.76806100       15.09555900       23.57938500
+  |    4: Species C            15.00371500       16.84181600       22.14637900
+  |    5: Species H            15.57814300       14.17575200       24.13097700
+  |    6: Species C            17.01081600       15.68974200       23.62505900
+  |    7: Species H            14.20178600       17.28755400       21.55715500
+  |    8: Species C            16.25389100       17.45867900       22.17885600
+  |    9: Species H            17.80378800       15.24513800       24.22768600
+  |   10: Species C            17.26025000       16.85472600       22.92324800
+  |   11: Species C            16.51024200       18.71067300       21.41786500
+  |   12: Species H            18.23868900       17.33293600       22.97985000
+  |   13: Species C            15.79972700       19.90490700       21.65912200
+  |   14: Species C            17.44963600       18.68958200       20.38757300
+  |   15: Species C            14.81689300       20.04136800       22.77220400
+  |   16: Species C            16.06498600       21.00686100       20.85297200
+  |   17: Species H            17.95622300       17.74896800       20.17002900
+  |   18: Species C            17.71489600       19.79153500       19.58142300
+  |   19: Species C            13.56459000       20.59336400       22.52847300
+  |   20: Species C            15.14226600       19.69702600       24.08087000
+  |   21: Species H            15.55840000       21.94747500       21.07051600
+  |   22: Species C            17.00438000       20.98577000       19.82268100
+  |   23: Species C            18.69773000       19.65507500       18.46834100
+  |   24: Species H            13.28786400       20.86024400       21.51003700
+  |   25: Species C            12.66187800       20.79652300       23.54835100
+  |   26: Species C            14.24304100       19.91111100       25.11044000
+  |   27: Species H            16.12023700       19.27046800       24.30119800
+  |   28: Species C            17.26073100       22.23776400       19.06168900
+  |   29: Species C            18.37235600       19.99941600       17.15967500
+  |   30: Species C            19.95003200       19.10307900       18.71207300
+  |   31: Species H            11.68599700       21.22252200       23.32080700
+  |   32: Species C            12.99445600       20.46450900       24.84485100
+  |   33: Species H            14.51353700       19.63434900       26.12712300
+  |   34: Species C            16.25437300       22.84171700       18.31729800
+  |   35: Species C            18.51090800       22.85462700       19.09416600
+  |   36: Species H            17.39438500       20.42597500       16.93934800
+  |   37: Species C            19.27158100       19.78533200       16.13010500
+  |   38: Species C            20.85274400       18.89992000       17.69219400
+  |   39: Species H            20.22675900       18.83619800       19.73050800
+  |   40: Species H            12.28735200       20.62174000       25.65914600
+  |   41: Species H            15.27593400       22.36350700       18.26069500
+  |   42: Species C            16.50380600       24.00670100       17.61548700
+  |   43: Species H            19.31283700       22.40888900       19.68339100
+  |   44: Species C            18.73759000       24.02588900       18.40957300
+  |   45: Species H            19.00108600       20.06209400       15.11342300
+  |   46: Species C            20.52016700       19.23193400       16.39569400
+  |   47: Species H            21.82862500       18.47392100       17.91973900
+  |   48: Species H            15.71083500       24.45130500       17.01285900
+  |   49: Species C            17.74656200       24.60088300       17.66116000
+  |   50: Species H            19.71641700       24.50027900       18.47019700
+  |   51: Species H            21.22727000       19.07470300       15.58140000
+  |   52: Species H            17.93647900       25.52069100       17.10956800
+  |
+
+  | The smallest distance between any two atoms is         1.08784514 AA.
+  |
+  | The first atom of this pair is atom number                     37 .
+  | The second atom of this pair is atom number                    45 .
+
+  Number of empty states per atom not set in control.in - providing a guess from actual geometry.
+  | Total number of empty states used during s.c.f. cycle:      123
+  If you use a very high smearing, use empty_states (per atom!) in control.in to increase this value.
+
+  Structure-dependent array size parameters: 
+  | Maximum number of distinct radial functions  :       18
+  | Maximum number of basis functions            :     1500
+  | Number of Kohn-Sham states (occupied + empty):      224
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Preparing all fixed parts of the calculation.
+------------------------------------------------------------
+  Determining machine precision:
+    2.225073858507201E-308
+  Setting up grids for atomic and cluster calculations.
+
+  Creating wave function, potential, and density for free atoms.
+
+  Species: H
+
+  List of occupied orbitals and eigenvalues:
+    n    l              occ      energy [Ha]    energy [eV]
+    1    0           1.0000        -0.238386        -6.4868
+
+
+  Species: C
+
+  List of occupied orbitals and eigenvalues:
+    n    l              occ      energy [Ha]    energy [eV]
+    1    0           2.0000       -10.049212      -273.4530
+    2    0           2.0000        -0.504761       -13.7352
+    2    1           2.0000        -0.193631        -5.2690
+
+  Creating fixed part of basis set: Ionic, confined, hydrogenic.
+ 
+  H                    hydrogenic:
+ 
+  List of hydrogenic basis orbitals: 
+    n    l      effective z      eigenvalue [eV]  inner max. [A]     outer max. [A]     outer radius [A]   
+    2    0         2.100000       -14.9965           0.193243           1.317208           5.373006
+    2    1         3.500000       -41.6672           0.602369           0.602369           4.056063
+    1    0         0.850000        -9.8292           0.624871           0.624871           5.373006
+    2    1         3.700000       -46.5653           0.573622           0.573622           3.910002
+    2    0         1.200000        -4.5995           0.334980           2.228188           5.505995
+    3    2         7.000000       -74.0753           0.680699           0.680699           3.769201
+ 
+ 
+  C                    hydrogenic:
+ 
+  List of hydrogenic basis orbitals: 
+    n    l      effective z      eigenvalue [eV]  inner max. [A]     outer max. [A]     outer radius [A]   
+    2    1         1.700000        -9.8152           1.245706           1.245706           5.401630
+    3    2         6.000000       -54.4226           0.792453           0.792453           4.178599
+    2    0         4.900000       -81.6681           0.082559           0.562749           3.353238
+    4    3         9.800000       -81.6681           0.863254           0.863254           4.028125
+    3    1         5.200000       -40.8774           0.305389           1.215618           4.898362
+    3    0         4.300000       -27.9508           0.091041           1.610311           5.401630
+    5    4        14.400000      -112.8510           0.917666           0.917666           3.883070
+    3    2         6.200000       -58.1113           0.763917           0.763917           4.077671
+ 
+
+  Adding cutoff potential to free-atom effective potential.
+  Creating atomic-like basis functions for current effective potential.
+
+  Species H                   :
+
+  List of atomic basis orbitals and eigenvalues:
+    n    l      energy [Ha]    energy [eV]    outer radius [A]
+    1    0        -0.238386        -6.4868       5.373006
+
+
+  Species C                   :
+
+  List of atomic basis orbitals and eigenvalues:
+    n    l      energy [Ha]    energy [eV]    outer radius [A]
+    1    0       -10.049212      -273.4530       1.934409
+    2    0        -0.504761       -13.7352       5.271162
+    2    1        -0.193631        -5.2690       5.401630
+
+  Assembling full basis from fixed parts.
+  | Species H :   atomic orbital   1 s accepted.
+  | Species H :    hydro orbital   2 s accepted.
+  | Species H :    hydro orbital   1 s accepted.
+  | Species H :    hydro orbital   2 s accepted.
+  | Species H :    hydro orbital   2 p accepted.
+  | Species H :    hydro orbital   2 p accepted.
+  | Species H :    hydro orbital   3 d accepted.
+  | Species C :   atomic orbital   1 s accepted.
+  | Species C :    hydro orbital   2 s accepted.
+  | Species C :   atomic orbital   2 s accepted.
+  | Species C :    hydro orbital   3 s accepted.
+  | Species C :    hydro orbital   3 p accepted.
+  | Species C :   atomic orbital   2 p accepted.
+  | Species C :    hydro orbital   2 p accepted.
+  | Species C :    hydro orbital   3 d accepted.
+  | Species C :    hydro orbital   3 d accepted.
+  | Species C :    hydro orbital   4 f accepted.
+  | Species C :    hydro orbital   5 g accepted.
+ 
+  Basis size parameters after reduction:
+  | Total number of radial functions:       18
+  | Total number of basis functions :     1500
+ 
+  Per-task memory consumption for arrays in subroutine allocate_ext:
+  |           4.448616MB.
+  Testing on-site integration grid accuracy.
+  |  Species  Function  <phi|h_atom|phi> (log., in eV)  <phi|h_atom|phi> (rad., in eV)
+           1        1                 -6.4870767962                 -6.4871688290
+           1        2                 13.5032046589                 13.5028982997
+           1        3                 32.8195184817                 32.8119941656
+           1        4                 33.8513856511                 33.7670005767 ***
+           1        5                 28.8544614965                 28.8544615203
+           1        6                 59.6326952547                 59.6327656460
+           1        7                 60.2719308513                 60.2719305949
+           2        8               -273.4529726040               -273.4529710464
+           2        9                -10.7721037319                -10.7721022101
+           2       10                 17.6044132601                 17.6044162063
+           2       11                 53.7706460658                 53.7706913770
+           2       12                 15.0973290362                 15.0973256030
+           2       13                  3.8545134692                  3.8545724687
+           2       14                 12.1156992592                 12.1182024431
+           2       15                 29.4352039302                 29.4352041816
+           2       16                 54.8741144708                 54.8740268729
+           2       17                 59.3556032049                 59.3556031382
+           2       18                 93.4551837154                 93.4551838009
+ * Note: Onsite integrals marked "***" above are less accurate than
+ * onsite_accuracy_threshold =    0.03000 eV. Usually, this is harmless.
+ * When in doubt, tighten the "radial" and/or "radial_multiplier" flags to check.
+
+  Preparing densities etc. for the partition functions (integrals / Hartree potential).
+
+  Preparations completed.
+  max(cpu_time)          :      0.214 s.
+  Wall clock time (cpu1) :      0.298 s.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency loop: Initialization.
+
+          Date     :  20210620, Time     :  172652.367
+------------------------------------------------------------
+
+  Initializing index lists of integration centers etc. from given atomic structure:
+  | Number of centers in hartree potential         :        52
+  | Number of centers in hartree multipole         :        52
+  | Number of centers in electron density summation:        52
+  | Number of centers in basis integrals           :        52
+  | Number of centers in integrals                 :        52
+  | Number of centers in hamiltonian               :        52
+  * Using 56 tasks for Scalapack Eigenvalue solver.
+  Detailed listing of tasks and assigned k-points:
+  (for non-periodic systems, the "k-point" denotes an internal label only)
+   Task     0 k-point     1 on d021
+   Task     1 k-point     1 on d021
+   Task     2 k-point     1 on d021
+   Task     3 k-point     1 on d021
+   Task     4 k-point     1 on d021
+   Task     5 k-point     1 on d021
+   Task     6 k-point     1 on d021
+   Task     7 k-point     1 on d021
+   Task     8 k-point     1 on d021
+   Task     9 k-point     1 on d021
+   Task    10 k-point     1 on d021
+   Task    11 k-point     1 on d021
+   Task    12 k-point     1 on d021
+   Task    13 k-point     1 on d021
+   Task    14 k-point     1 on d021
+   Task    15 k-point     1 on d021
+   Task    16 k-point     1 on d021
+   Task    17 k-point     1 on d021
+   Task    18 k-point     1 on d021
+   Task    19 k-point     1 on d021
+   Task    20 k-point     1 on d021
+   Task    21 k-point     1 on d021
+   Task    22 k-point     1 on d021
+   Task    23 k-point     1 on d021
+   Task    24 k-point     1 on d021
+   Task    25 k-point     1 on d021
+   Task    26 k-point     1 on d021
+   Task    27 k-point     1 on d021
+   Task    28 k-point     1 on d021
+   Task    29 k-point     1 on d021
+   Task    30 k-point     1 on d021
+   Task    31 k-point     1 on d021
+   Task    32 k-point     1 on d021
+   Task    33 k-point     1 on d021
+   Task    34 k-point     1 on d021
+   Task    35 k-point     1 on d021
+   Task    36 k-point     1 on d021
+   Task    37 k-point     1 on d021
+   Task    38 k-point     1 on d021
+   Task    39 k-point     1 on d021
+   Task    40 k-point     1 on d021
+   Task    41 k-point     1 on d021
+   Task    42 k-point     1 on d021
+   Task    43 k-point     1 on d021
+   Task    44 k-point     1 on d021
+   Task    45 k-point     1 on d021
+   Task    46 k-point     1 on d021
+   Task    47 k-point     1 on d021
+   Task    48 k-point     1 on d021
+   Task    49 k-point     1 on d021
+   Task    50 k-point     1 on d021
+   Task    51 k-point     1 on d021
+   Task    52 k-point     1 on d021
+   Task    53 k-point     1 on d021
+   Task    54 k-point     1 on d021
+   Task    55 k-point     1 on d021
+  Tasks:    56 split into      8 X      7 BLACS grid
+  Calculating block size based on n_basis =         1500 max_nprow =            8 max_npcol =            7
+  ScaLAPACK block size set to:           16
+  Allocating        0.344 MB for ovlp
+  Allocating        0.344 MB for ham
+  Allocating        0.344 MB for eigenvec
+  Required Scalapack workspace - INTEGER:            1 REAL:             1
+  Partitioning the integration grid into batches with parallel hashing+maxmin method.
+  | Number of batches:     7538
+  | Maximal batch size:     200
+  | Minimal batch size:       2
+  | Average batch size:     114.120
+  | Standard deviation of batch sizes:      40.597
+
+  Integration load balanced across     56 MPI tasks.
+  Work distribution over tasks is as follows:
+  Task      0 has      15469 integration points.
+  Task      1 has      15430 integration points.
+  Task      2 has      15293 integration points.
+  Task      3 has      15424 integration points.
+  Task      4 has      15334 integration points.
+  Task      5 has      15315 integration points.
+  Task      6 has      15299 integration points.
+  Task      7 has      15481 integration points.
+  Task      8 has      15414 integration points.
+  Task      9 has      15229 integration points.
+  Task     10 has      15450 integration points.
+  Task     11 has      15290 integration points.
+  Task     12 has      15408 integration points.
+  Task     13 has      15261 integration points.
+  Task     14 has      15457 integration points.
+  Task     15 has      15509 integration points.
+  Task     16 has      15216 integration points.
+  Task     17 has      15386 integration points.
+  Task     18 has      15386 integration points.
+  Task     19 has      15404 integration points.
+  Task     20 has      15227 integration points.
+  Task     21 has      15411 integration points.
+  Task     22 has      15518 integration points.
+  Task     23 has      15265 integration points.
+  Task     24 has      15404 integration points.
+  Task     25 has      15337 integration points.
+  Task     26 has      15311 integration points.
+  Task     27 has      15248 integration points.
+  Task     28 has      15471 integration points.
+  Task     29 has      15379 integration points.
+  Task     30 has      15259 integration points.
+  Task     31 has      15516 integration points.
+  Task     32 has      15233 integration points.
+  Task     33 has      15414 integration points.
+  Task     34 has      15294 integration points.
+  Task     35 has      15408 integration points.
+  Task     36 has      15429 integration points.
+  Task     37 has      15286 integration points.
+  Task     38 has      15504 integration points.
+  Task     39 has      15205 integration points.
+  Task     40 has      15393 integration points.
+  Task     41 has      15255 integration points.
+  Task     42 has      15403 integration points.
+  Task     43 has      15429 integration points.
+  Task     44 has      15265 integration points.
+  Task     45 has      15449 integration points.
+  Task     46 has      15368 integration points.
+  Task     47 has      15304 integration points.
+  Task     48 has      15302 integration points.
+  Task     49 has      15383 integration points.
+  Task     50 has      15453 integration points.
+  Task     51 has      15291 integration points.
+  Task     52 has      15400 integration points.
+  Task     53 has      15348 integration points.
+  Task     54 has      15401 integration points.
+  Task     55 has      15222 integration points.
+  Initializing partition tables, free-atom densities, potentials, etc. across the integration grid (initialize_grid_storage).
+  | initialize_grid_storage: Actual outermost partition radius vs. multipole_radius_free
+  | (-- VB: in principle, multipole_radius_free should be larger, hence this output)
+  | Species        1: Confinement radius =              6.000000000000000 AA, multipole_radius_free =              6.071692442739658 AA.
+  | Species        1: outer_partition_radius set to              6.071692442739658 AA .
+  | Species        2: Confinement radius =              6.000000000000000 AA, multipole_radius_free =              6.029870734432609 AA.
+  | Species        2: outer_partition_radius set to              6.029870734432609 AA .
+  | The sparse table of interatomic distances needs     32.0360 kbyte instead of    21.6320 kbyte of memory.
+  | Using the partition_type stratmann_smoother will reduce your memory usage.
+  | Net number of integration points:   860240
+  | of which are non-zero points    :   682206
+  Renormalizing the initial density to the exact electron count on the 3D integration grid.
+  | Initial density: Formal number of electrons (from input files) :     202.0000000000
+  | Integrated number of electrons on 3D grid     :     202.0000455794
+  | Charge integration error                      :       0.0000455794
+  | Normalization factor for density and gradient :       0.9999997744
+  Obtaining max. number of non-zero basis functions in each batch (get_n_compute_maxes).
+  | Maximal number of non-zero basis functions:      962
+  Selecting the method for density update.
+  Loop over occupied states selected for charge density update.
+  Hamiltonian matrix size:
+  | Size of matrix non-packed:               1125750
+  | Size of matrix packed:          980171
+  Allocating        2.688 MB for KS_eigenvector
+  use_local_index: Max. local matrix size =       795984
+  Task:     0 matrix size:     559637
+  Task:     1 matrix size:     415634
+  Task:     2 matrix size:     427000
+  Task:     3 matrix size:     731471
+  Task:     4 matrix size:     795984
+  Task:     5 matrix size:     618610
+  Task:     6 matrix size:     661230
+  Task:     7 matrix size:     132355
+  Task:     8 matrix size:     232903
+  Task:     9 matrix size:     138601
+  Task:    10 matrix size:     406683
+  Task:    11 matrix size:     179720
+  Task:    12 matrix size:     450843
+  Task:    13 matrix size:     304354
+  Task:    14 matrix size:     403751
+  Task:    15 matrix size:     159612
+  Task:    16 matrix size:     214155
+  Task:    17 matrix size:     622248
+  Task:    18 matrix size:     594837
+  Task:    19 matrix size:     443759
+  Task:    20 matrix size:     317313
+  Task:    21 matrix size:     363243
+  Task:    22 matrix size:     260253
+  Task:    23 matrix size:     254242
+  Task:    24 matrix size:     549673
+  Task:    25 matrix size:     447956
+  Task:    26 matrix size:     288308
+  Task:    27 matrix size:     264606
+  Task:    28 matrix size:     222772
+  Task:    29 matrix size:     446319
+  Task:    30 matrix size:     542581
+  Task:    31 matrix size:     171991
+  Task:    32 matrix size:     143380
+  Task:    33 matrix size:     334365
+  Task:    34 matrix size:     407655
+  Task:    35 matrix size:     399633
+  Task:    36 matrix size:     598377
+  Task:    37 matrix size:     620782
+  Task:    38 matrix size:     169618
+  Task:    39 matrix size:     127765
+  Task:    40 matrix size:     421804
+  Task:    41 matrix size:     365873
+  Task:    42 matrix size:     444944
+  Task:    43 matrix size:     238871
+  Task:    44 matrix size:     404116
+  Task:    45 matrix size:     209628
+  Task:    46 matrix size:     265353
+  Task:    47 matrix size:      93528
+  Task:    48 matrix size:     228737
+  Task:    49 matrix size:     789385
+  Task:    50 matrix size:     635410
+  Task:    51 matrix size:     743623
+  Task:    52 matrix size:     601624
+  Task:    53 matrix size:     328289
+  Task:    54 matrix size:     773547
+  Task:    55 matrix size:     453786
+  Integrating Hamiltonian matrix: batch-based integration.
+  Time summed over all CPUs for integration: real work      146.401 s, elapsed      261.976 s
+  Time get_set_sparse_local_matrix_scalapack:     0.015105 s
+  Start compute_balanced_batch_distribution
+  Done load balancing, time needed:      0.008 s
+  Integrating overlap matrix with loadbalancing
+  Time summed over all CPUs for integration: real work       42.307 s, elapsed       47.764 s
+  Time get_set_full_local_matrix_scalapack:     0.018181 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Overlap matrix is not singular
+  | Lowest and highest eigenvalues :  0.12E+02,  0.93E-04
+  Finished singularity check of overlap matrix
+  | Time :     0.090 s
+  Finished Cholesky decomposition
+  | Time :     0.020 s
+  Finished transformation to standard eigenproblem
+  | Time :     0.014 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.090 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -8.65252469 eV
+  Writing Kohn-Sham eigenvalues.
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       2.00000         -10.176945         -276.92876
+      2       2.00000         -10.176945         -276.92875
+      3       2.00000         -10.176257         -276.91005
+      4       2.00000         -10.176257         -276.91005
+      5       2.00000         -10.174852         -276.87182
+      6       2.00000         -10.174852         -276.87182
+      7       2.00000         -10.173903         -276.84598
+      8       2.00000         -10.173903         -276.84598
+      9       2.00000         -10.173454         -276.83378
+     10       2.00000         -10.173454         -276.83378
+     11       2.00000         -10.172796         -276.81587
+     12       2.00000         -10.172796         -276.81586
+     13       2.00000         -10.172490         -276.80755
+     14       2.00000         -10.172490         -276.80755
+     15       2.00000         -10.172253         -276.80108
+     16       2.00000         -10.172253         -276.80108
+     17       2.00000         -10.172101         -276.79695
+     18       2.00000         -10.172101         -276.79695
+     19       2.00000         -10.171697         -276.78595
+     20       2.00000         -10.171697         -276.78595
+     21       2.00000         -10.170490         -276.75312
+     22       2.00000         -10.170490         -276.75312
+     23       2.00000         -10.165897         -276.62815
+     24       2.00000         -10.165897         -276.62814
+     25       2.00000         -10.165704         -276.62288
+     26       2.00000         -10.165704         -276.62287
+     27       2.00000         -10.162746         -276.54239
+     28       2.00000         -10.162735         -276.54210
+     29       2.00000         -10.162387         -276.53261
+     30       2.00000         -10.162377         -276.53234
+     31       2.00000          -1.014328          -27.60126
+     32       2.00000          -1.005624          -27.36442
+     33       2.00000          -1.000779          -27.23257
+     34       2.00000          -1.000651          -27.22909
+     35       2.00000          -0.984916          -26.80092
+     36       2.00000          -0.929765          -25.30020
+     37       2.00000          -0.915269          -24.90573
+     38       2.00000          -0.899577          -24.47873
+     39       2.00000          -0.891173          -24.25004
+     40       2.00000          -0.889727          -24.21071
+     41       2.00000          -0.889537          -24.20552
+     42       2.00000          -0.888919          -24.18872
+     43       2.00000          -0.887787          -24.15792
+     44       2.00000          -0.863722          -23.50306
+     45       2.00000          -0.852262          -23.19124
+     46       2.00000          -0.786374          -21.39833
+     47       2.00000          -0.773473          -21.04727
+     48       2.00000          -0.752632          -20.48016
+     49       2.00000          -0.751806          -20.45768
+     50       2.00000          -0.750115          -20.41166
+     51       2.00000          -0.749246          -20.38801
+     52       2.00000          -0.749039          -20.38240
+     53       2.00000          -0.740653          -20.15419
+     54       2.00000          -0.726192          -19.76070
+     55       2.00000          -0.714440          -19.44090
+     56       2.00000          -0.678745          -18.46960
+     57       2.00000          -0.663962          -18.06731
+     58       2.00000          -0.658521          -17.91928
+     59       2.00000          -0.648533          -17.64749
+     60       2.00000          -0.644894          -17.54847
+     61       2.00000          -0.634475          -17.26495
+     62       2.00000          -0.633601          -17.24116
+     63       2.00000          -0.629548          -17.13086
+     64       2.00000          -0.620776          -16.89217
+     65       2.00000          -0.614071          -16.70972
+     66       2.00000          -0.599349          -16.30912
+     67       2.00000          -0.587477          -15.98607
+     68       2.00000          -0.577684          -15.71959
+     69       2.00000          -0.575547          -15.66142
+     70       2.00000          -0.573096          -15.59473
+     71       2.00000          -0.572203          -15.57044
+     72       2.00000          -0.568375          -15.46627
+     73       2.00000          -0.567277          -15.43639
+     74       2.00000          -0.566474          -15.41455
+     75       2.00000          -0.566243          -15.40824
+     76       2.00000          -0.564185          -15.35225
+     77       2.00000          -0.549463          -14.95164
+     78       2.00000          -0.525831          -14.30860
+     79       2.00000          -0.514344          -13.99602
+     80       2.00000          -0.512054          -13.93369
+     81       2.00000          -0.510303          -13.88606
+     82       2.00000          -0.509406          -13.86163
+     83       2.00000          -0.506914          -13.79382
+     84       2.00000          -0.506777          -13.79010
+     85       2.00000          -0.499373          -13.58863
+     86       2.00000          -0.499358          -13.58823
+     87       2.00000          -0.497224          -13.53014
+     88       2.00000          -0.494602          -13.45880
+     89       2.00000          -0.493766          -13.43605
+     90       2.00000          -0.489121          -13.30967
+     91       2.00000          -0.486673          -13.24304
+     92       2.00000          -0.424648          -11.55526
+     93       2.00000          -0.419715          -11.42104
+     94       2.00000          -0.411630          -11.20103
+     95       2.00000          -0.407216          -11.08092
+     96       2.00000          -0.406699          -11.06683
+     97       2.00000          -0.404899          -11.01786
+     98       2.00000          -0.404315          -11.00196
+     99       2.00000          -0.397255          -10.80986
+    100       2.00000          -0.390886          -10.63654
+    101       2.00000          -0.373003          -10.14992
+    102       0.00000          -0.240236           -6.53716
+    103       0.00000          -0.226862           -6.17322
+    104       0.00000          -0.216286           -5.88545
+    105       0.00000          -0.211152           -5.74573
+    106       0.00000          -0.210723           -5.73405
+    107       0.00000          -0.209214           -5.69299
+    108       0.00000          -0.206123           -5.60889
+    109       0.00000          -0.202735           -5.51669
+    110       0.00000          -0.195163           -5.31067
+    111       0.00000          -0.178620           -4.86051
+    112       0.00000          -0.085588           -2.32896
+    113       0.00000          -0.082956           -2.25734
+    114       0.00000          -0.074318           -2.02231
+    115       0.00000          -0.073114           -1.98954
+    116       0.00000          -0.067474           -1.83606
+    117       0.00000          -0.066142           -1.79981
+    118       0.00000          -0.063697           -1.73328
+    119       0.00000          -0.061600           -1.67622
+    120       0.00000          -0.061374           -1.67007
+    121       0.00000          -0.054997           -1.49655
+    122       0.00000          -0.050850           -1.38371
+    123       0.00000          -0.039255           -1.06818
+    124       0.00000          -0.038280           -1.04166
+    125       0.00000          -0.028970           -0.78833
+    126       0.00000          -0.028350           -0.77145
+    127       0.00000          -0.026704           -0.72665
+    128       0.00000          -0.024172           -0.65774
+    129       0.00000          -0.022390           -0.60925
+    130       0.00000          -0.015004           -0.40828
+    131       0.00000          -0.008752           -0.23816
+    132       0.00000          -0.005649           -0.15370
+    133       0.00000          -0.003508           -0.09545
+    134       0.00000          -0.001785           -0.04856
+    135       0.00000           0.000298            0.00811
+    136       0.00000           0.008272            0.22510
+    137       0.00000           0.013264            0.36094
+    138       0.00000           0.014541            0.39568
+    139       0.00000           0.019908            0.54173
+    140       0.00000           0.023539            0.64053
+    141       0.00000           0.026002            0.70756
+    142       0.00000           0.030196            0.82166
+    143       0.00000           0.033183            0.90296
+    144       0.00000           0.034362            0.93503
+    145       0.00000           0.044813            1.21941
+    146       0.00000           0.047726            1.29870
+    147       0.00000           0.049424            1.34489
+    148       0.00000           0.053503            1.45588
+    149       0.00000           0.058173            1.58298
+    150       0.00000           0.061314            1.66844
+    151       0.00000           0.063501            1.72796
+    152       0.00000           0.063849            1.73741
+    153       0.00000           0.065059            1.77036
+    154       0.00000           0.065193            1.77400
+    155       0.00000           0.071887            1.95616
+    156       0.00000           0.073369            1.99647
+    157       0.00000           0.075918            2.06584
+    158       0.00000           0.079740            2.16984
+    159       0.00000           0.080056            2.17843
+    160       0.00000           0.082562            2.24663
+    161       0.00000           0.085134            2.31662
+    162       0.00000           0.086370            2.35026
+    163       0.00000           0.091468            2.48897
+    164       0.00000           0.092288            2.51128
+    165       0.00000           0.092842            2.52636
+    166       0.00000           0.093982            2.55737
+    167       0.00000           0.097871            2.66322
+    168       0.00000           0.100488            2.73442
+    169       0.00000           0.100569            2.73663
+    170       0.00000           0.113205            3.08046
+    171       0.00000           0.113471            3.08771
+    172       0.00000           0.115709            3.14861
+    173       0.00000           0.117178            3.18858
+    174       0.00000           0.120398            3.27619
+    175       0.00000           0.121129            3.29609
+    176       0.00000           0.122770            3.34075
+    177       0.00000           0.122983            3.34653
+    178       0.00000           0.126090            3.43108
+    179       0.00000           0.128866            3.50661
+    180       0.00000           0.131540            3.57939
+    181       0.00000           0.132630            3.60905
+    182       0.00000           0.135745            3.69382
+    183       0.00000           0.136725            3.72048
+    184       0.00000           0.137302            3.73617
+    185       0.00000           0.140901            3.83411
+    186       0.00000           0.144778            3.93962
+    187       0.00000           0.145552            3.96067
+    188       0.00000           0.148287            4.03510
+    189       0.00000           0.151709            4.12822
+    190       0.00000           0.152482            4.14925
+    191       0.00000           0.155349            4.22727
+    192       0.00000           0.160657            4.37170
+    193       0.00000           0.162587            4.42422
+    194       0.00000           0.163635            4.45275
+    195       0.00000           0.166836            4.53985
+    196       0.00000           0.168987            4.59838
+    197       0.00000           0.172774            4.70143
+    198       0.00000           0.176308            4.79760
+    199       0.00000           0.184890            5.03112
+    200       0.00000           0.186204            5.06688
+    201       0.00000           0.188285            5.12349
+    202       0.00000           0.188305            5.12405
+    203       0.00000           0.191591            5.21346
+    204       0.00000           0.192367            5.23458
+    205       0.00000           0.196560            5.34868
+    206       0.00000           0.200446            5.45442
+    207       0.00000           0.205690            5.59712
+    208       0.00000           0.205751            5.59877
+    209       0.00000           0.209677            5.70560
+    210       0.00000           0.211449            5.75382
+    211       0.00000           0.217099            5.90756
+    212       0.00000           0.218448            5.94426
+    213       0.00000           0.220888            6.01067
+    214       0.00000           0.221766            6.03456
+    215       0.00000           0.224573            6.11095
+    216       0.00000           0.226186            6.15485
+    217       0.00000           0.228188            6.20930
+    218       0.00000           0.236641            6.43932
+    219       0.00000           0.237230            6.45535
+    220       0.00000           0.238745            6.49657
+    221       0.00000           0.242053            6.58661
+    222       0.00000           0.245500            6.68039
+    223       0.00000           0.246980            6.72067
+    224       0.00000           0.252379            6.86759
+
+  Highest occupied state (VBM) at    -10.14992405 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -6.53715817 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.61276588 eV.
+  Calculating total energy contributions from superposition of free atom densities.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -701.83287935 Ha      -19097.84433480 eV
+  | XC energy correction          :        -166.53995318 Ha       -4531.78270059 eV
+  | XC potential correction       :         213.91778147 Ha        5820.99900292 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :           0.00000000 Ha           0.00000000 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1157.47480710 Ha      -31496.49202514 eV
+  | Total energy, T -> 0          :       -1157.47480710 Ha      -31496.49202514 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1157.47480710 Ha      -31496.49202514 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1145.58356542 Ha       31172.91487562 eV
+  | Electrostatic energy          :       -2136.51841935 Ha      -58137.62420017 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :           0.00000000 Ha           0.00000000 eV
+  | Sum of eigenvalues per atom                           :        -367.26623721 eV
+  | Total energy (T->0) per atom                          :        -605.70176971 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.70176971 eV
+  Initialize hartree_potential_storage
+  Max. number of atoms included in rho_multipole:           52
+
+  End scf initialization - timings             :  max(cpu_time)    wall_clock(cpu1)
+  | Time for scf. initialization               :        7.567 s           7.631 s
+  | Boundary condition initialization          :        0.001 s           0.005 s
+  | Integration                                :        5.589 s           5.596 s
+  | Solution of K.-S. eqns.                    :        0.236 s           0.254 s
+  | Grid partitioning                          :        0.741 s           0.745 s
+  | Preloading free-atom quantities on grid    :        0.014 s           0.016 s
+  | Free-atom superposition energy             :        0.071 s           0.072 s
+  | Total energy evaluation                    :        0.001 s           0.005 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.959 MB
+  | Peak value for overall tracked memory usage on task 0     :          31.716 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    1
+
+  Date     :  20210620, Time     :  172700.000
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =  -2.842171E-14
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.351043E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.394 s, elapsed       48.564 s
+  | RMS charge density error from multipole expansion :   0.128073E-01
+
+  Start compute_balanced_batch_distribution
+  Done load balancing, time needed:      0.008 s
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      162.222 s, elapsed      183.607 s
+  Time get_set_full_local_matrix_scalapack:     0.018113 s
+  Start compute_balanced_batch_distribution
+  Done load balancing, time needed:      0.007 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.017 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.091 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -4.07886797 eV
+  Writing Kohn-Sham eigenvalues.
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       2.00000          -9.982862         -271.64750
+      2       2.00000          -9.982860         -271.64744
+      3       2.00000          -9.982401         -271.63496
+      4       2.00000          -9.982399         -271.63490
+      5       2.00000          -9.969914         -271.29515
+      6       2.00000          -9.969914         -271.29515
+      7       2.00000          -9.968538         -271.25772
+      8       2.00000          -9.968538         -271.25772
+      9       2.00000          -9.953902         -270.85946
+     10       2.00000          -9.953902         -270.85945
+     11       2.00000          -9.944732         -270.60993
+     12       2.00000          -9.944732         -270.60992
+     13       2.00000          -9.940291         -270.48909
+     14       2.00000          -9.940291         -270.48908
+     15       2.00000          -9.940055         -270.48265
+     16       2.00000          -9.940055         -270.48265
+     17       2.00000          -9.938188         -270.43187
+     18       2.00000          -9.938188         -270.43186
+     19       2.00000          -9.937880         -270.42348
+     20       2.00000          -9.937880         -270.42348
+     21       2.00000          -9.937572         -270.41509
+     22       2.00000          -9.937572         -270.41509
+     23       2.00000          -9.937383         -270.40996
+     24       2.00000          -9.937383         -270.40995
+     25       2.00000          -9.937372         -270.40965
+     26       2.00000          -9.937372         -270.40964
+     27       2.00000          -9.934928         -270.34315
+     28       2.00000          -9.934928         -270.34315
+     29       2.00000          -9.932856         -270.28677
+     30       2.00000          -9.932856         -270.28676
+     31       2.00000          -0.866142          -23.56892
+     32       2.00000          -0.843029          -22.93998
+     33       2.00000          -0.835104          -22.72434
+     34       2.00000          -0.833896          -22.69147
+     35       2.00000          -0.823240          -22.40150
+     36       2.00000          -0.782116          -21.28246
+     37       2.00000          -0.768050          -20.89970
+     38       2.00000          -0.745045          -20.27371
+     39       2.00000          -0.734110          -19.97616
+     40       2.00000          -0.731171          -19.89618
+     41       2.00000          -0.731045          -19.89274
+     42       2.00000          -0.730237          -19.87075
+     43       2.00000          -0.729691          -19.85591
+     44       2.00000          -0.709499          -19.30644
+     45       2.00000          -0.697631          -18.98350
+     46       2.00000          -0.638588          -17.37686
+     47       2.00000          -0.631228          -17.17658
+     48       2.00000          -0.605663          -16.48094
+     49       2.00000          -0.605080          -16.46506
+     50       2.00000          -0.603415          -16.41977
+     51       2.00000          -0.603218          -16.41441
+     52       2.00000          -0.600439          -16.33878
+     53       2.00000          -0.589507          -16.04130
+     54       2.00000          -0.586693          -15.96472
+     55       2.00000          -0.566443          -15.41370
+     56       2.00000          -0.542765          -14.76938
+     57       2.00000          -0.529620          -14.41170
+     58       2.00000          -0.523816          -14.25377
+     59       2.00000          -0.508928          -13.84863
+     60       2.00000          -0.495936          -13.49511
+     61       2.00000          -0.489534          -13.32089
+     62       2.00000          -0.478005          -13.00718
+     63       2.00000          -0.468282          -12.74260
+     64       2.00000          -0.465805          -12.67521
+     65       2.00000          -0.465795          -12.67493
+     66       2.00000          -0.461978          -12.57105
+     67       2.00000          -0.457296          -12.44365
+     68       2.00000          -0.452099          -12.30223
+     69       2.00000          -0.449969          -12.24427
+     70       2.00000          -0.445957          -12.13512
+     71       2.00000          -0.432464          -11.76793
+     72       2.00000          -0.430432          -11.71266
+     73       2.00000          -0.429333          -11.68275
+     74       2.00000          -0.428668          -11.66465
+     75       2.00000          -0.428585          -11.66239
+     76       2.00000          -0.428112          -11.64952
+     77       2.00000          -0.404531          -11.00785
+     78       2.00000          -0.391169          -10.64425
+     79       2.00000          -0.385443          -10.48844
+     80       2.00000          -0.379890          -10.33734
+     81       2.00000          -0.374171          -10.18171
+     82       2.00000          -0.371226          -10.10156
+     83       2.00000          -0.366070           -9.96128
+     84       2.00000          -0.365211           -9.93791
+     85       2.00000          -0.363730           -9.89760
+     86       2.00000          -0.363307           -9.88609
+     87       2.00000          -0.360967           -9.82241
+     88       2.00000          -0.357780           -9.73570
+     89       2.00000          -0.353173           -9.61032
+     90       2.00000          -0.351794           -9.57280
+     91       2.00000          -0.346703           -9.43428
+     92       2.00000          -0.298306           -8.11733
+     93       2.00000          -0.291617           -7.93531
+     94       2.00000          -0.277201           -7.54302
+     95       2.00000          -0.271874           -7.39808
+     96       2.00000          -0.271051           -7.37569
+     97       2.00000          -0.269160           -7.32421
+     98       2.00000          -0.269123           -7.32322
+     99       2.00000          -0.262116           -7.13254
+    100       2.00000          -0.261330           -7.11115
+    101       2.00000          -0.242719           -6.60472
+    102       0.00000          -0.115632           -3.14652
+    103       0.00000          -0.103002           -2.80282
+    104       0.00000          -0.086496           -2.35368
+    105       0.00000          -0.080622           -2.19384
+    106       0.00000          -0.080556           -2.19203
+    107       0.00000          -0.078644           -2.14003
+    108       0.00000          -0.074989           -2.04055
+    109       0.00000          -0.071771           -1.95299
+    110       0.00000          -0.070703           -1.92393
+    111       0.00000          -0.051223           -1.39384
+    112       0.00000          -0.031449           -0.85578
+    113       0.00000          -0.024224           -0.65917
+    114       0.00000          -0.021026           -0.57214
+    115       0.00000          -0.014055           -0.38247
+    116       0.00000          -0.008539           -0.23236
+    117       0.00000          -0.005006           -0.13622
+    118       0.00000          -0.000222           -0.00605
+    119       0.00000           0.007440            0.20247
+    120       0.00000           0.009035            0.24586
+    121       0.00000           0.011817            0.32157
+    122       0.00000           0.014722            0.40061
+    123       0.00000           0.015542            0.42293
+    124       0.00000           0.019926            0.54222
+    125       0.00000           0.026186            0.71257
+    126       0.00000           0.029543            0.80390
+    127       0.00000           0.034658            0.94309
+    128       0.00000           0.037055            1.00831
+    129       0.00000           0.039826            1.08372
+    130       0.00000           0.046256            1.25868
+    131       0.00000           0.051709            1.40709
+    132       0.00000           0.056200            1.52927
+    133       0.00000           0.061387            1.67042
+    134       0.00000           0.063963            1.74053
+    135       0.00000           0.064951            1.76742
+    136       0.00000           0.068352            1.85996
+    137       0.00000           0.069152            1.88172
+    138       0.00000           0.075010            2.04113
+    139       0.00000           0.079402            2.16063
+    140       0.00000           0.081712            2.22350
+    141       0.00000           0.083820            2.28084
+    142       0.00000           0.096346            2.62171
+    143       0.00000           0.099724            2.71364
+    144       0.00000           0.104572            2.84556
+    145       0.00000           0.113139            3.07866
+    146       0.00000           0.117569            3.19922
+    147       0.00000           0.118630            3.22810
+    148       0.00000           0.120676            3.28376
+    149       0.00000           0.124462            3.38677
+    150       0.00000           0.129057            3.51181
+    151       0.00000           0.132624            3.60889
+    152       0.00000           0.133687            3.63782
+    153       0.00000           0.136324            3.70956
+    154       0.00000           0.139032            3.78324
+    155       0.00000           0.140333            3.81866
+    156       0.00000           0.141441            3.84881
+    157       0.00000           0.143307            3.89958
+    158       0.00000           0.146590            3.98891
+    159       0.00000           0.149994            4.08154
+    160       0.00000           0.151104            4.11174
+    161       0.00000           0.156640            4.26239
+    162       0.00000           0.158562            4.31468
+    163       0.00000           0.162514            4.42222
+    164       0.00000           0.166370            4.52717
+    165       0.00000           0.168614            4.58822
+    166       0.00000           0.172711            4.69970
+    167       0.00000           0.172938            4.70588
+    168       0.00000           0.175175            4.76675
+    169       0.00000           0.180878            4.92195
+    170       0.00000           0.181638            4.94263
+    171       0.00000           0.183064            4.98143
+    172       0.00000           0.184117            5.01007
+    173       0.00000           0.190009            5.17042
+    174       0.00000           0.190844            5.19312
+    175       0.00000           0.191486            5.21061
+    176       0.00000           0.194856            5.30230
+    177       0.00000           0.195987            5.33309
+    178       0.00000           0.196650            5.35112
+    179       0.00000           0.201639            5.48686
+    180       0.00000           0.203740            5.54404
+    181       0.00000           0.205446            5.59047
+    182       0.00000           0.207736            5.65277
+    183       0.00000           0.209836            5.70993
+    184       0.00000           0.214483            5.83638
+    185       0.00000           0.219692            5.97813
+    186       0.00000           0.220619            6.00334
+    187       0.00000           0.221575            6.02936
+    188       0.00000           0.221960            6.03983
+    189       0.00000           0.222507            6.05471
+    190       0.00000           0.226964            6.17600
+    191       0.00000           0.229388            6.24197
+    192       0.00000           0.235882            6.41867
+    193       0.00000           0.238132            6.47990
+    194       0.00000           0.241684            6.57656
+    195       0.00000           0.246058            6.69558
+    196       0.00000           0.247262            6.72834
+    197       0.00000           0.248625            6.76543
+    198       0.00000           0.253686            6.90315
+    199       0.00000           0.255394            6.94963
+    200       0.00000           0.255574            6.95452
+    201       0.00000           0.256783            6.98742
+    202       0.00000           0.260355            7.08462
+    203       0.00000           0.263787            7.17801
+    204       0.00000           0.272409            7.41264
+    205       0.00000           0.273725            7.44844
+    206       0.00000           0.275129            7.48665
+    207       0.00000           0.276991            7.53731
+    208       0.00000           0.279999            7.61917
+    209       0.00000           0.280545            7.63401
+    210       0.00000           0.287970            7.83605
+    211       0.00000           0.288461            7.84943
+    212       0.00000           0.291000            7.91850
+    213       0.00000           0.291799            7.94026
+    214       0.00000           0.300999            8.19059
+    215       0.00000           0.304346            8.28168
+    216       0.00000           0.306401            8.33759
+    217       0.00000           0.309040            8.40940
+    218       0.00000           0.316337            8.60798
+    219       0.00000           0.316825            8.62126
+    220       0.00000           0.322874            8.78586
+    221       0.00000           0.324034            8.81741
+    222       0.00000           0.327143            8.90202
+    223       0.00000           0.329401            8.96345
+    224       0.00000           0.333693            9.08024
+
+  Highest occupied state (VBM) at     -6.60471527 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -3.14651797 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.45819730 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -668.26213891 Ha      -18184.33800871 eV
+  | XC energy correction          :        -168.86783943 Ha       -4595.12770852 eV
+  | XC potential correction       :         216.93913922 Ha        5903.21433035 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -33.12627092 Ha        -901.41169505 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.33686609 Ha      -31465.52707461 eV
+  | Total energy, T -> 0          :       -1156.33686609 Ha      -31465.52707461 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.33686609 Ha      -31465.52707461 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1156.22902455 Ha       31462.59255703 eV
+  | Electrostatic energy          :       -2143.69805120 Ha      -58332.99192312 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.07295817 Ha          -1.98529295 eV
+  | Sum of eigenvalues per atom                           :        -349.69880786 eV
+  | Total energy (T->0) per atom                          :        -605.10628990 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.10628990 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.1129E+01
+  | Change of sum of eigenvalues  :  0.9135E+03 eV
+  | Change of total energy        :  0.3096E+02 eV
+
+  End self-consistency iteration #     1       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.619 s           5.627 s
+  | Charge density update                      :        1.281 s           1.281 s
+  | Density mixing                             :        0.003 s           0.005 s
+  | Hartree multipole update                   :        0.010 s           0.011 s
+  | Hartree multipole summation                :        0.878 s           0.880 s
+  | Integration                                :        3.284 s           3.285 s
+  | Solution of K.-S. eqns.                    :        0.159 s           0.159 s
+  | Total energy evaluation                    :        0.002 s           0.000 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.959 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.655 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    2
+
+  Date     :  20210620, Time     :  172705.629
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.705303E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.357809E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.843 s, elapsed       32.259 s
+  | RMS charge density error from multipole expansion :   0.222211E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.062 s, elapsed      170.784 s
+  Time get_set_full_local_matrix_scalapack:     0.017416 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.015 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.090 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.14205470 eV
+  Highest occupied state (VBM) at     -5.41673671 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93598294 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.48075378 eV.
+
+  Checking to see if s.c.f. parameters should be adjusted.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -658.11363465 Ha      -17908.18315722 eV
+  | XC energy correction          :        -169.81829607 Ha       -4620.99094940 eV
+  | XC potential correction       :         218.15995781 Ha        5936.43449457 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.40644724 Ha       -1181.14952564 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.19817618 Ha      -31461.75313035 eV
+  | Total energy, T -> 0          :       -1156.19817618 Ha      -31461.75313035 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.19817618 Ha      -31461.75313035 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1156.27354366 Ha       31463.80398382 eV
+  | Electrostatic energy          :       -2142.65342378 Ha      -58304.56616477 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.11507493 Ha          -3.13134828 eV
+  | Sum of eigenvalues per atom                           :        -344.38813764 eV
+  | Total energy (T->0) per atom                          :        -605.03371405 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.03371405 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.5489E+00
+  | Change of sum of eigenvalues  :  0.2762E+03 eV
+  | Change of total energy        :  0.3774E+01 eV
+
+  End self-consistency iteration #     2       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.093 s           5.095 s
+  | Charge density update                      :        1.285 s           1.283 s
+  | Density mixing                             :        0.005 s           0.006 s
+  | Hartree multipole update                   :        0.009 s           0.010 s
+  | Hartree multipole summation                :        0.578 s           0.579 s
+  | Integration                                :        3.054 s           3.054 s
+  | Solution of K.-S. eqns.                    :        0.157 s           0.157 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    3
+
+  Date     :  20210620, Time     :  172710.728
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.989520E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.371871E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.850 s, elapsed       32.275 s
+  | RMS charge density error from multipole expansion :   0.268587E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.315 s, elapsed      170.804 s
+  Time get_set_full_local_matrix_scalapack:     0.017340 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.015 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.090 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.17982484 eV
+  Highest occupied state (VBM) at     -5.55162461 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -2.06282709 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.48879752 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.88905202 Ha      -17902.07195291 eV
+  | XC energy correction          :        -169.98756048 Ha       -4625.59686850 eV
+  | XC potential correction       :         218.37172975 Ha        5942.19710222 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.66507706 Ha       -1188.18720120 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18971585 Ha      -31461.52291307 eV
+  | Total energy, T -> 0          :       -1156.18971585 Ha      -31461.52291307 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18971585 Ha      -31461.52291307 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1153.96161942 Ha       31400.89332421 eV
+  | Electrostatic energy          :       -2140.16377479 Ha      -58236.81936877 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13087899 Ha          -3.56139851 eV
+  | Sum of eigenvalues per atom                           :        -344.27061448 eV
+  | Total energy (T->0) per atom                          :        -605.02928679 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02928679 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.2006E+00
+  | Change of sum of eigenvalues  :  0.6111E+01 eV
+  | Change of total energy        :  0.2302E+00 eV
+
+  End self-consistency iteration #     3       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.111 s           5.110 s
+  | Charge density update                      :        1.294 s           1.290 s
+  | Density mixing                             :        0.006 s           0.006 s
+  | Hartree multipole update                   :        0.010 s           0.011 s
+  | Hartree multipole summation                :        0.579 s           0.579 s
+  | Integration                                :        3.055 s           3.055 s
+  | Solution of K.-S. eqns.                    :        0.161 s           0.161 s
+  | Total energy evaluation                    :        0.000 s           0.002 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    4
+
+  Date     :  20210620, Time     :  172715.842
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   5.684342E-14
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.370624E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.848 s, elapsed       32.271 s
+  | RMS charge density error from multipole expansion :   0.274580E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.138 s, elapsed      170.843 s
+  Time get_set_full_local_matrix_scalapack:     0.017298 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.014 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.090 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.06108079 eV
+  Highest occupied state (VBM) at     -5.39728852 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.90045920 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49682932 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.44094564 Ha      -17889.87835787 eV
+  | XC energy correction          :        -169.95842061 Ha       -4624.80393214 eV
+  | XC potential correction       :         218.33342095 Ha        5941.15466666 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -44.10227866 Ha       -1200.08406194 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18798000 Ha      -31461.47567797 eV
+  | Total energy, T -> 0          :       -1156.18798000 Ha      -31461.47567797 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18798000 Ha      -31461.47567797 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1153.39782479 Ha       31385.55169181 eV
+  | Electrostatic energy          :       -2139.62738418 Ha      -58222.22343763 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13195200 Ha          -3.59059667 eV
+  | Sum of eigenvalues per atom                           :        -344.03612227 eV
+  | Total energy (T->0) per atom                          :        -605.02837842 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02837842 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.4671E-01
+  | Change of sum of eigenvalues  :  0.1219E+02 eV
+  | Change of total energy        :  0.4724E-01 eV
+
+  End self-consistency iteration #     4       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.106 s           5.103 s
+  | Charge density update                      :        1.295 s           1.291 s
+  | Density mixing                             :        0.007 s           0.008 s
+  | Hartree multipole update                   :        0.011 s           0.011 s
+  | Hartree multipole summation                :        0.579 s           0.578 s
+  | Integration                                :        3.055 s           3.055 s
+  | Solution of K.-S. eqns.                    :        0.156 s           0.157 s
+  | Total energy evaluation                    :        0.000 s           0.002 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    5
+
+  Date     :  20210620, Time     :  172720.953
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.136868E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.368896E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.834 s, elapsed       32.247 s
+  | RMS charge density error from multipole expansion :   0.277945E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.377 s, elapsed      171.027 s
+  Time get_set_full_local_matrix_scalapack:     0.018662 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.016 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.090 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09015329 eV
+  Highest occupied state (VBM) at     -5.42942235 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93316125 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49626110 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.67096385 Ha      -17896.13747188 eV
+  | XC energy correction          :        -169.93117974 Ha       -4624.06267034 eV
+  | XC potential correction       :         218.29802144 Ha        5940.19139688 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.86390889 Ha       -1193.59769059 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18778709 Ha      -31461.47042861 eV
+  | Total energy, T -> 0          :       -1156.18778709 Ha      -31461.47042861 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18778709 Ha      -31461.47042861 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1153.06194286 Ha       31376.41187959 eV
+  | Electrostatic energy          :       -2139.31855021 Ha      -58213.81963786 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13241905 Ha          -3.60330560 eV
+  | Sum of eigenvalues per atom                           :        -344.15648984 eV
+  | Total energy (T->0) per atom                          :        -605.02827747 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827747 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.1976E-01
+  | Change of sum of eigenvalues  : -0.6259E+01 eV
+  | Change of total energy        :  0.5249E-02 eV
+
+  End self-consistency iteration #     5       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.111 s           5.113 s
+  | Charge density update                      :        1.289 s           1.290 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.009 s           0.009 s
+  | Hartree multipole summation                :        0.578 s           0.579 s
+  | Integration                                :        3.058 s           3.058 s
+  | Solution of K.-S. eqns.                    :        0.161 s           0.161 s
+  | Total energy evaluation                    :        0.000 s           0.002 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    6
+
+  Date     :  20210620, Time     :  172726.070
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.705303E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.368073E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.845 s, elapsed       32.260 s
+  | RMS charge density error from multipole expansion :   0.279140E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.183 s, elapsed      170.762 s
+  Time get_set_full_local_matrix_scalapack:     0.017305 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.014 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.090 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09027343 eV
+  Highest occupied state (VBM) at     -5.42672279 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93116986 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49555293 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.69301262 Ha      -17896.73744938 eV
+  | XC energy correction          :        -169.92123693 Ha       -4623.79211285 eV
+  | XC potential correction       :         218.28513315 Ha        5939.84068874 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.83891477 Ha       -1192.91756579 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18778721 Ha      -31461.47043195 eV
+  | Total energy, T -> 0          :       -1156.18778721 Ha      -31461.47043195 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18778721 Ha      -31461.47043195 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.97256748 Ha       31373.97985159 eV
+  | Electrostatic energy          :       -2139.23911776 Ha      -58211.65817068 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13256371 Ha          -3.60724200 eV
+  | Sum of eigenvalues per atom                           :        -344.16802787 eV
+  | Total energy (T->0) per atom                          :        -605.02827754 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827754 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.6096E-02
+  | Change of sum of eigenvalues  : -0.6000E+00 eV
+  | Change of total energy        : -0.3340E-05 eV
+
+  End self-consistency iteration #     6       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.107 s           5.103 s
+  | Charge density update                      :        1.294 s           1.290 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.010 s           0.010 s
+  | Hartree multipole summation                :        0.579 s           0.579 s
+  | Integration                                :        3.053 s           3.053 s
+  | Solution of K.-S. eqns.                    :        0.155 s           0.155 s
+  | Total energy evaluation                    :        0.001 s           0.002 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    7
+
+  Date     :  20210620, Time     :  172731.177
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   5.684342E-14
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367695E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.837 s, elapsed       32.252 s
+  | RMS charge density error from multipole expansion :   0.279808E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.155 s, elapsed      170.762 s
+  Time get_set_full_local_matrix_scalapack:     0.017293 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.014 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.089 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09353868 eV
+  Highest occupied state (VBM) at     -5.43090681 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93472587 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618093 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72364318 Ha      -17897.57094931 eV
+  | XC energy correction          :        -169.91844907 Ha       -4623.71625138 eV
+  | XC potential correction       :         218.28151137 Ha        5939.74213524 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.80745607 Ha       -1192.06153114 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779299 Ha      -31461.47058926 eV
+  | Total energy, T -> 0          :       -1156.18779299 Ha      -31461.47058926 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779299 Ha      -31461.47058926 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.95429072 Ha       31373.48251575 eV
+  | Electrostatic energy          :       -2139.22363464 Ha      -58211.23685363 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13268996 Ha          -3.61067743 eV
+  | Sum of eigenvalues per atom                           :        -344.18405672 eV
+  | Total energy (T->0) per atom                          :        -605.02828056 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02828056 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.2330E-02
+  | Change of sum of eigenvalues  : -0.8335E+00 eV
+  | Change of total energy        : -0.1573E-03 eV
+
+  End self-consistency iteration #     7       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.100 s           5.097 s
+  | Charge density update                      :        1.291 s           1.288 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.009 s           0.010 s
+  | Hartree multipole summation                :        0.578 s           0.578 s
+  | Integration                                :        3.053 s           3.053 s
+  | Solution of K.-S. eqns.                    :        0.154 s           0.155 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    8
+
+  Date     :  20210620, Time     :  172736.277
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.421085E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367600E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.837 s, elapsed       32.251 s
+  | RMS charge density error from multipole expansion :   0.280018E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.174 s, elapsed      170.943 s
+  Time get_set_full_local_matrix_scalapack:     0.017334 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.014 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.089 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09308318 eV
+  Highest occupied state (VBM) at     -5.42977942 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93359940 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618002 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72043719 Ha      -17897.48370983 eV
+  | XC energy correction          :        -169.91845831 Ha       -4623.71650268 eV
+  | XC potential correction       :         218.28151843 Ha        5939.74232733 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81065845 Ha       -1192.14867239 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779156 Ha      -31461.47055023 eV
+  | Total energy, T -> 0          :       -1156.18779156 Ha      -31461.47055023 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779156 Ha      -31461.47055023 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.95888940 Ha       31373.60765223 eV
+  | Electrostatic energy          :       -2139.22822265 Ha      -58211.36169979 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13274063 Ha          -3.61205626 eV
+  | Sum of eigenvalues per atom                           :        -344.18237904 eV
+  | Total energy (T->0) per atom                          :        -605.02827981 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827981 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.8753E-03
+  | Change of sum of eigenvalues  :  0.8724E-01 eV
+  | Change of total energy        :  0.3902E-04 eV
+
+  End self-consistency iteration #     8       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.107 s           5.104 s
+  | Charge density update                      :        1.295 s           1.292 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.009 s           0.010 s
+  | Hartree multipole summation                :        0.578 s           0.578 s
+  | Integration                                :        3.056 s           3.057 s
+  | Solution of K.-S. eqns.                    :        0.155 s           0.155 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #    9
+
+  Date     :  20210620, Time     :  172741.385
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.421085E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367589E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.843 s, elapsed       32.262 s
+  | RMS charge density error from multipole expansion :   0.280098E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.369 s, elapsed      171.270 s
+  Time get_set_full_local_matrix_scalapack:     0.017243 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.016 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.090 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09331696 eV
+  Highest occupied state (VBM) at     -5.43016817 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93396908 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49619909 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72099021 Ha      -17897.49875840 eV
+  | XC energy correction          :        -169.91866857 Ha       -4623.72222428 eV
+  | XC potential correction       :         218.28178490 Ha        5939.74957839 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81016145 Ha       -1192.13514822 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779137 Ha      -31461.47054519 eV
+  | Total energy, T -> 0          :       -1156.18779137 Ha      -31461.47054519 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779137 Ha      -31461.47054519 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.96160174 Ha       31373.68145882 eV
+  | Electrostatic energy          :       -2139.23072454 Ha      -58211.42977973 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13276426 Ha          -3.61269924 eV
+  | Sum of eigenvalues per atom                           :        -344.18266843 eV
+  | Total energy (T->0) per atom                          :        -605.02827972 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827972 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.2727E-03
+  | Change of sum of eigenvalues  : -0.1505E-01 eV
+  | Change of total energy        :  0.5043E-05 eV
+
+  End self-consistency iteration #     9       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.115 s           5.113 s
+  | Charge density update                      :        1.291 s           1.287 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.009 s           0.010 s
+  | Hartree multipole summation                :        0.579 s           0.579 s
+  | Integration                                :        3.063 s           3.062 s
+  | Solution of K.-S. eqns.                    :        0.159 s           0.159 s
+  | Total energy evaluation                    :        0.000 s           0.002 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   10
+
+  Date     :  20210620, Time     :  172746.502
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   8.526513E-14
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367604E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.840 s, elapsed       32.240 s
+  | RMS charge density error from multipole expansion :   0.280130E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.278 s, elapsed      170.943 s
+  Time get_set_full_local_matrix_scalapack:     0.017412 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.015 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.089 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09317345 eV
+  Highest occupied state (VBM) at     -5.43003275 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93384544 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618731 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72005489 Ha      -17897.47330684 eV
+  | XC energy correction          :        -169.91889127 Ha       -4623.72828428 eV
+  | XC potential correction       :         218.28206800 Ha        5939.75728192 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81115688 Ha       -1192.16223526 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779107 Ha      -31461.47053712 eV
+  | Total energy, T -> 0          :       -1156.18779107 Ha      -31461.47053712 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779107 Ha      -31461.47053712 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.96384882 Ha       31373.74260489 eV
+  | Electrostatic energy          :       -2139.23274862 Ha      -58211.48485774 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13277635 Ha          -3.61302823 eV
+  | Sum of eigenvalues per atom                           :        -344.18217898 eV
+  | Total energy (T->0) per atom                          :        -605.02827956 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827956 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.1103E-03
+  | Change of sum of eigenvalues  :  0.2545E-01 eV
+  | Change of total energy        :  0.8067E-05 eV
+
+  End self-consistency iteration #    10       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.112 s           5.110 s
+  | Charge density update                      :        1.297 s           1.294 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.009 s           0.010 s
+  | Hartree multipole summation                :        0.578 s           0.578 s
+  | Integration                                :        3.057 s           3.058 s
+  | Solution of K.-S. eqns.                    :        0.155 s           0.155 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   11
+
+  Date     :  20210620, Time     :  172751.616
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.136868E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367606E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.836 s, elapsed       32.244 s
+  | RMS charge density error from multipole expansion :   0.280144E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.171 s, elapsed      171.092 s
+  Time get_set_full_local_matrix_scalapack:     0.017301 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.015 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.089 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09325939 eV
+  Highest occupied state (VBM) at     -5.43013833 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93395404 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618429 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72039111 Ha      -17897.48245604 eV
+  | XC energy correction          :        -169.91892162 Ha       -4623.72911001 eV
+  | XC potential correction       :         218.28210578 Ha        5939.75830978 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81082815 Ha       -1192.15329012 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779115 Ha      -31461.47053906 eV
+  | Total energy, T -> 0          :       -1156.18779115 Ha      -31461.47053906 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779115 Ha      -31461.47053906 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.96409916 Ha       31373.74941691 eV
+  | Electrostatic energy          :       -2139.23296869 Ha      -58211.49084597 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13278060 Ha          -3.61314383 eV
+  | Sum of eigenvalues per atom                           :        -344.18235492 eV
+  | Total energy (T->0) per atom                          :        -605.02827960 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827960 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.3400E-04
+  | Change of sum of eigenvalues  : -0.9149E-02 eV
+  | Change of total energy        : -0.1939E-05 eV
+
+  End self-consistency iteration #    11       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.107 s           5.105 s
+  | Charge density update                      :        1.293 s           1.290 s
+  | Density mixing                             :        0.009 s           0.010 s
+  | Hartree multipole update                   :        0.009 s           0.010 s
+  | Hartree multipole summation                :        0.578 s           0.578 s
+  | Integration                                :        3.059 s           3.059 s
+  | Solution of K.-S. eqns.                    :        0.154 s           0.155 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   12
+
+  Date     :  20210620, Time     :  172756.725
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.989520E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367607E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.836 s, elapsed       32.250 s
+  | RMS charge density error from multipole expansion :   0.280146E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.114 s, elapsed      171.084 s
+  Time get_set_full_local_matrix_scalapack:     0.017172 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.015 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.089 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09321267 eV
+  Highest occupied state (VBM) at     -5.43008943 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93390494 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618449 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72015758 Ha      -17897.47610127 eV
+  | XC energy correction          :        -169.91893912 Ha       -4623.72958618 eV
+  | XC potential correction       :         218.28212807 Ha        5939.75891641 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81106644 Ha       -1192.15977419 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779110 Ha      -31461.47053790 eV
+  | Total energy, T -> 0          :       -1156.18779110 Ha      -31461.47053790 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779110 Ha      -31461.47053790 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.96424769 Ha       31373.75345866 eV
+  | Electrostatic energy          :       -2139.23309967 Ha      -58211.49441038 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13278171 Ha          -3.61317423 eV
+  | Sum of eigenvalues per atom                           :        -344.18223272 eV
+  | Total energy (T->0) per atom                          :        -605.02827957 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827957 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.1562E-04
+  | Change of sum of eigenvalues  :  0.6355E-02 eV
+  | Change of total energy        :  0.1165E-05 eV
+
+  End self-consistency iteration #    12       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.107 s           5.104 s
+  | Charge density update                      :        1.293 s           1.290 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.009 s           0.009 s
+  | Hartree multipole summation                :        0.578 s           0.579 s
+  | Integration                                :        3.059 s           3.059 s
+  | Solution of K.-S. eqns.                    :        0.154 s           0.154 s
+  | Total energy evaluation                    :        0.000 s           0.002 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   13
+
+  Date     :  20210620, Time     :  172801.832
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   1.136868E-13
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367607E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.832 s, elapsed       32.253 s
+  | RMS charge density error from multipole expansion :   0.280148E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.199 s, elapsed      170.947 s
+  Time get_set_full_local_matrix_scalapack:     0.017225 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.015 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.089 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09321816 eV
+  Highest occupied state (VBM) at     -5.43009780 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93391226 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618554 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72019871 Ha      -17897.47722053 eV
+  | XC energy correction          :        -169.91893842 Ha       -4623.72956720 eV
+  | XC potential correction       :         218.28212709 Ha        5939.75888968 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81102504 Ha       -1192.15864771 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779112 Ha      -31461.47053843 eV
+  | Total energy, T -> 0          :       -1156.18779112 Ha      -31461.47053843 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779112 Ha      -31461.47053843 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.96420157 Ha       31373.75220365 eV
+  | Electrostatic energy          :       -2139.23305427 Ha      -58211.49317487 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13278224 Ha          -3.61318864 eV
+  | Sum of eigenvalues per atom                           :        -344.18225424 eV
+  | Total energy (T->0) per atom                          :        -605.02827959 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827959 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.5397E-05
+  | Change of sum of eigenvalues  : -0.1119E-02 eV
+  | Change of total energy        : -0.5296E-06 eV
+
+  End self-consistency iteration #    13       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.103 s           5.101 s
+  | Charge density update                      :        1.292 s           1.289 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.009 s           0.009 s
+  | Hartree multipole summation                :        0.578 s           0.579 s
+  | Integration                                :        3.057 s           3.056 s
+  | Solution of K.-S. eqns.                    :        0.154 s           0.155 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   14
+
+  Date     :  20210620, Time     :  172806.936
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   5.684342E-14
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367607E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.839 s, elapsed       32.264 s
+  | RMS charge density error from multipole expansion :   0.280148E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.281 s, elapsed      171.144 s
+  Time get_set_full_local_matrix_scalapack:     0.017276 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.015 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.089 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09321752 eV
+  Highest occupied state (VBM) at     -5.43009654 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93391085 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618569 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72019210 Ha      -17897.47704067 eV
+  | XC energy correction          :        -169.91893786 Ha       -4623.72955181 eV
+  | XC potential correction       :         218.28212636 Ha        5939.75886996 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81103149 Ha       -1192.15882334 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779113 Ha      -31461.47053853 eV
+  | Total energy, T -> 0          :       -1156.18779113 Ha      -31461.47053853 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779113 Ha      -31461.47053853 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.96418002 Ha       31373.75161723 eV
+  | Electrostatic energy          :       -2139.23303329 Ha      -58211.49260395 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13278248 Ha          -3.61319501 eV
+  | Sum of eigenvalues per atom                           :        -344.18225078 eV
+  | Total energy (T->0) per atom                          :        -605.02827959 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827959 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.1850E-05
+  | Change of sum of eigenvalues  :  0.1799E-03 eV
+  | Change of total energy        : -0.1020E-06 eV
+
+  End self-consistency iteration #    14       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.109 s           5.106 s
+  | Charge density update                      :        1.293 s           1.290 s
+  | Density mixing                             :        0.009 s           0.010 s
+  | Hartree multipole update                   :        0.009 s           0.009 s
+  | Hartree multipole summation                :        0.579 s           0.579 s
+  | Integration                                :        3.060 s           3.060 s
+  | Solution of K.-S. eqns.                    :        0.154 s           0.155 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+
+------------------------------------------------------------
+          Begin self-consistency iteration #   15
+
+  Date     :  20210620, Time     :  172812.045
+------------------------------------------------------------
+  Evaluating new KS density.
+  Integration grid: deviation in total charge (<rho> - N_e) =   8.526513E-14
+  Pulay mixing of updated and previous charge densities.
+
+  Evaluating partitioned Hartree potential by multipole expansion.
+  | Analytical far-field extrapolation by fixed multipoles:
+  | Hartree multipole sum: apparent total charge =   0.367606E-04
+  Summing up the Hartree potential with load balancing.
+  Time summed over all CPUs for potential: real work       28.830 s, elapsed       32.249 s
+  | RMS charge density error from multipole expansion :   0.280148E-01
+
+  Integrating Hamiltonian matrix: batch-based integration with load balancing
+  Time summed over all CPUs for integration: real work      164.299 s, elapsed      171.063 s
+  Time get_set_full_local_matrix_scalapack:     0.017249 s
+
+  Updating Kohn-Sham eigenvalues and eigenvectors using ELSI and the ELPA eigensolver.
+  Finished transformation to standard eigenproblem
+  | Time :     0.014 s
+  Starting ELPA eigensolver
+  Finished solving standard eigenproblem
+  | Time :     0.089 s
+  Finished back-transformation of eigenvectors
+  | Time :     0.004 s
+
+  Obtaining occupation numbers and chemical potential using ELSI.
+  | Chemical potential (Fermi level):    -3.09321798 eV
+  Highest occupied state (VBM) at     -5.43009723 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93391137 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618586 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.72019477 Ha      -17897.47711339 eV
+  | XC energy correction          :        -169.91893757 Ha       -4623.72954416 eV
+  | XC potential correction       :         218.28212601 Ha        5939.75886043 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81102876 Ha       -1192.15874879 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1156.18779113 Ha      -31461.47053859 eV
+  | Total energy, T -> 0          :       -1156.18779113 Ha      -31461.47053859 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1156.18779113 Ha      -31461.47053859 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1152.96417108 Ha       31373.75137402 eV
+  | Electrostatic energy          :       -2139.23302464 Ha      -58211.49236844 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13278258 Ha          -3.61319776 eV
+  | Sum of eigenvalues per atom                           :        -344.18225218 eV
+  | Total energy (T->0) per atom                          :        -605.02827959 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -605.02827959 eV
+
+  Self-consistency convergence accuracy:
+  | Change of charge density      :  0.7038E-06
+  | Change of sum of eigenvalues  : -0.7272E-04 eV
+  | Change of total energy        : -0.6199E-07 eV
+
+  Writing Kohn-Sham eigenvalues.
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       2.00000          -9.911948         -269.71783
+      2       2.00000          -9.911943         -269.71769
+      3       2.00000          -9.911515         -269.70604
+      4       2.00000          -9.911509         -269.70589
+      5       2.00000          -9.907891         -269.60744
+      6       2.00000          -9.907891         -269.60744
+      7       2.00000          -9.907392         -269.59384
+      8       2.00000          -9.907391         -269.59384
+      9       2.00000          -9.898818         -269.36055
+     10       2.00000          -9.898818         -269.36055
+     11       2.00000          -9.896753         -269.30434
+     12       2.00000          -9.896753         -269.30434
+     13       2.00000          -9.896006         -269.28401
+     14       2.00000          -9.896006         -269.28401
+     15       2.00000          -9.895653         -269.27441
+     16       2.00000          -9.895653         -269.27441
+     17       2.00000          -9.895198         -269.26203
+     18       2.00000          -9.895198         -269.26203
+     19       2.00000          -9.894913         -269.25428
+     20       2.00000          -9.894913         -269.25428
+     21       2.00000          -9.894881         -269.25340
+     22       2.00000          -9.894881         -269.25340
+     23       2.00000          -9.894701         -269.24852
+     24       2.00000          -9.894701         -269.24852
+     25       2.00000          -9.894262         -269.23658
+     26       2.00000          -9.894262         -269.23658
+     27       2.00000          -9.893561         -269.21750
+     28       2.00000          -9.893561         -269.21750
+     29       2.00000          -9.893019         -269.20273
+     30       2.00000          -9.893018         -269.20273
+     31       2.00000          -0.810864          -22.06473
+     32       2.00000          -0.794571          -21.62138
+     33       2.00000          -0.787516          -21.42940
+     34       2.00000          -0.786766          -21.40899
+     35       2.00000          -0.773306          -21.04273
+     36       2.00000          -0.728142          -19.81375
+     37       2.00000          -0.712074          -19.37653
+     38       2.00000          -0.692259          -18.83732
+     39       2.00000          -0.681825          -18.55340
+     40       2.00000          -0.679467          -18.48923
+     41       2.00000          -0.679268          -18.48382
+     42       2.00000          -0.678524          -18.46359
+     43       2.00000          -0.677551          -18.43711
+     44       2.00000          -0.653464          -17.78166
+     45       2.00000          -0.642009          -17.46996
+     46       2.00000          -0.581510          -15.82370
+     47       2.00000          -0.573129          -15.59564
+     48       2.00000          -0.548764          -14.93262
+     49       2.00000          -0.548439          -14.92379
+     50       2.00000          -0.546899          -14.88188
+     51       2.00000          -0.546657          -14.87530
+     52       2.00000          -0.543686          -14.79444
+     53       2.00000          -0.532160          -14.48080
+     54       2.00000          -0.526331          -14.32221
+     55       2.00000          -0.508758          -13.84401
+     56       2.00000          -0.486581          -13.24054
+     57       2.00000          -0.474036          -12.89917
+     58       2.00000          -0.467938          -12.73325
+     59       2.00000          -0.451312          -12.28082
+     60       2.00000          -0.435081          -11.83915
+     61       2.00000          -0.429897          -11.69809
+     62       2.00000          -0.416366          -11.32988
+     63       2.00000          -0.413311          -11.24678
+     64       2.00000          -0.409904          -11.15406
+     65       2.00000          -0.405455          -11.03300
+     66       2.00000          -0.403723          -10.98585
+     67       2.00000          -0.396772          -10.79672
+     68       2.00000          -0.394367          -10.73126
+     69       2.00000          -0.391351          -10.64920
+     70       2.00000          -0.384203          -10.45471
+     71       2.00000          -0.375286          -10.21205
+     72       2.00000          -0.373926          -10.17503
+     73       2.00000          -0.373142          -10.15370
+     74       2.00000          -0.372937          -10.14813
+     75       2.00000          -0.372338          -10.13183
+     76       2.00000          -0.371953          -10.12136
+     77       2.00000          -0.346039           -9.41621
+     78       2.00000          -0.344167           -9.36525
+     79       2.00000          -0.339222           -9.23071
+     80       2.00000          -0.335598           -9.13210
+     81       2.00000          -0.332798           -9.05589
+     82       2.00000          -0.328200           -8.93079
+     83       2.00000          -0.323613           -8.80596
+     84       2.00000          -0.306501           -8.34033
+     85       2.00000          -0.304340           -8.28150
+     86       2.00000          -0.303197           -8.25042
+     87       2.00000          -0.301526           -8.20494
+     88       2.00000          -0.299037           -8.13721
+     89       2.00000          -0.297000           -8.08177
+     90       2.00000          -0.292638           -7.96309
+     91       2.00000          -0.287407           -7.82075
+     92       2.00000          -0.254119           -6.91492
+     93       2.00000          -0.247454           -6.73358
+     94       2.00000          -0.238905           -6.50093
+     95       2.00000          -0.234017           -6.36793
+     96       2.00000          -0.233808           -6.36223
+     97       2.00000          -0.231474           -6.29871
+     98       2.00000          -0.230795           -6.28025
+     99       2.00000          -0.222549           -6.05587
+    100       2.00000          -0.219313           -5.96782
+    101       2.00000          -0.199552           -5.43010
+    102       0.00000          -0.071070           -1.93391
+    103       0.00000          -0.059847           -1.62852
+    104       0.00000          -0.047325           -1.28779
+    105       0.00000          -0.042142           -1.14674
+    106       0.00000          -0.041814           -1.13781
+    107       0.00000          -0.039750           -1.08164
+    108       0.00000          -0.036033           -0.98052
+    109       0.00000          -0.031972           -0.86999
+    110       0.00000          -0.028054           -0.76339
+    111       0.00000          -0.010788           -0.29354
+    112       0.00000          -0.007550           -0.20546
+    113       0.00000          -0.003400           -0.09253
+    114       0.00000           0.000266            0.00724
+    115       0.00000           0.007765            0.21131
+    116       0.00000           0.011566            0.31472
+    117       0.00000           0.014124            0.38434
+    118       0.00000           0.018640            0.50722
+    119       0.00000           0.027425            0.74627
+    120       0.00000           0.028845            0.78491
+    121       0.00000           0.031285            0.85131
+    122       0.00000           0.035474            0.96530
+    123       0.00000           0.039355            1.07090
+    124       0.00000           0.039756            1.08182
+    125       0.00000           0.047095            1.28152
+    126       0.00000           0.051637            1.40512
+    127       0.00000           0.054551            1.48442
+    128       0.00000           0.057274            1.55851
+    129       0.00000           0.060926            1.65787
+    130       0.00000           0.072277            1.96675
+    131       0.00000           0.077853            2.11849
+    132       0.00000           0.085719            2.33253
+    133       0.00000           0.090452            2.46133
+    134       0.00000           0.096630            2.62945
+    135       0.00000           0.102113            2.77865
+    136       0.00000           0.102763            2.79633
+    137       0.00000           0.103021            2.80335
+    138       0.00000           0.103516            2.81682
+    139       0.00000           0.109015            2.96646
+    140       0.00000           0.112003            3.04776
+    141       0.00000           0.112302            3.05591
+    142       0.00000           0.120858            3.28870
+    143       0.00000           0.123835            3.36973
+    144       0.00000           0.125588            3.41741
+    145       0.00000           0.135604            3.68997
+    146       0.00000           0.142449            3.87622
+    147       0.00000           0.145287            3.95346
+    148       0.00000           0.149108            4.05745
+    149       0.00000           0.152880            4.16007
+    150       0.00000           0.158394            4.31012
+    151       0.00000           0.159381            4.33698
+    152       0.00000           0.161970            4.40742
+    153       0.00000           0.164240            4.46919
+    154       0.00000           0.165281            4.49754
+    155       0.00000           0.171025            4.65382
+    156       0.00000           0.171443            4.66520
+    157       0.00000           0.172800            4.70212
+    158       0.00000           0.176989            4.81612
+    159       0.00000           0.179843            4.89377
+    160       0.00000           0.180213            4.90383
+    161       0.00000           0.187343            5.09786
+    162       0.00000           0.189201            5.14843
+    163       0.00000           0.189537            5.15755
+    164       0.00000           0.195722            5.32586
+    165       0.00000           0.197397            5.37145
+    166       0.00000           0.199902            5.43961
+    167       0.00000           0.204937            5.57661
+    168       0.00000           0.206782            5.62682
+    169       0.00000           0.208456            5.67237
+    170       0.00000           0.209713            5.70657
+    171       0.00000           0.214959            5.84933
+    172       0.00000           0.215586            5.86639
+    173       0.00000           0.217134            5.90850
+    174       0.00000           0.219960            5.98541
+    175       0.00000           0.221903            6.03830
+    176       0.00000           0.222633            6.05816
+    177       0.00000           0.225722            6.14221
+    178       0.00000           0.226294            6.15778
+    179       0.00000           0.228683            6.22278
+    180       0.00000           0.237292            6.45704
+    181       0.00000           0.237541            6.46383
+    182       0.00000           0.240432            6.54247
+    183       0.00000           0.241327            6.56684
+    184       0.00000           0.247451            6.73349
+    185       0.00000           0.251023            6.83068
+    186       0.00000           0.252023            6.85788
+    187       0.00000           0.253754            6.90500
+    188       0.00000           0.256121            6.96940
+    189       0.00000           0.256830            6.98869
+    190       0.00000           0.261147            7.10619
+    191       0.00000           0.263915            7.18150
+    192       0.00000           0.268225            7.29877
+    193       0.00000           0.269269            7.32717
+    194       0.00000           0.269898            7.34430
+    195       0.00000           0.275908            7.50783
+    196       0.00000           0.276154            7.51454
+    197       0.00000           0.284271            7.73542
+    198       0.00000           0.285316            7.76384
+    199       0.00000           0.286291            7.79038
+    200       0.00000           0.286993            7.80947
+    201       0.00000           0.292836            7.96847
+    202       0.00000           0.293839            7.99577
+    203       0.00000           0.297412            8.09298
+    204       0.00000           0.298075            8.11103
+    205       0.00000           0.303377            8.25530
+    206       0.00000           0.304879            8.29618
+    207       0.00000           0.308375            8.39131
+    208       0.00000           0.308968            8.40745
+    209       0.00000           0.316006            8.59897
+    210       0.00000           0.316625            8.61582
+    211       0.00000           0.320144            8.71156
+    212       0.00000           0.323444            8.80135
+    213       0.00000           0.327163            8.90257
+    214       0.00000           0.333584            9.07727
+    215       0.00000           0.338829            9.22000
+    216       0.00000           0.340219            9.25783
+    217       0.00000           0.341215            9.28494
+    218       0.00000           0.349036            9.49776
+    219       0.00000           0.349352            9.50635
+    220       0.00000           0.355851            9.68321
+    221       0.00000           0.359237            9.77534
+    222       0.00000           0.363293            9.88570
+    223       0.00000           0.366688            9.97808
+    224       0.00000           0.368209           10.01947
+
+  Highest occupied state (VBM) at     -5.43009723 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93391137 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49618586 eV.
+
+  Self-consistency cycle converged.
+
+  End self-consistency iteration #    15       :  max(cpu_time)    wall_clock(cpu1)
+  | Time for this iteration                    :        5.108 s           5.113 s
+  | Charge density update                      :        1.293 s           1.290 s
+  | Density mixing                             :        0.009 s           0.009 s
+  | Hartree multipole update                   :        0.009 s           0.010 s
+  | Hartree multipole summation                :        0.578 s           0.578 s
+  | Integration                                :        3.059 s           3.059 s
+  | Solution of K.-S. eqns.                    :        0.154 s           0.154 s
+  | Total energy evaluation                    :        0.000 s           0.001 s
+
+  Partial memory accounting:
+  | Current value for overall tracked memory usage on task 0  :           5.960 MB
+  | Peak value for overall tracked memory usage on task 0     :          33.788 MB after allocating zora_vector2
+  | Largest tracked array allocation on task 0 so far         :           7.404 MB  when allocating hamiltonian_shell
+  Note:  These values currently only include a subset of arrays which are explicitly tracked.
+  The "true" memory usage will be greater.
+------------------------------------------------------------
+  |------------------------------------------------------
+  | Final ELSI Output
+  |------------------------------------------------------
+  |
+  | Physical Properties
+  |   Number of electrons       :        0.20200000E+03
+  |   Number of spins           :                     1
+  |   Number of k-points        :                     1
+  |   Number of states          :                   224
+  |
+  | Matrix Properties
+  |   Matrix format             :           BLACS_DENSE
+  |   Number of basis functions :                  1500
+  |   Matrix sparsity           :        0.14025956E+00
+  |
+  | Computational Details
+  |   Parallel mode             :            MULTI_PROC
+  |   Number of MPI tasks       :                    56
+  |   Solver requested          :                  ELPA
+  |   Number of ELSI calls      :                    16
+  |
+  |------------------------------------------------------
+  | ELSI Project (c)  elsi-interchange.org
+  |------------------------------------------------------
+
+------------------------------------------------------------
+          Post-processing: scaled ZORA corrections to eigenvalues and total energy.
+
+  Date     :  20210620, Time     :  172817.159
+------------------------------------------------------------
+  Computing correction matrix for scaled ZORA eigenvalues.
+  Evaluating scaled zora correction for each Kohn-Sham eigenstate.
+  Evaluating scaled zora correction for each Kohn-Sham eigenstate.
+  Time get_set_sparse_local_matrix_scalapack:     2.987712 s
+  Writing Kohn-Sham eigenvalues.
+
+  State    Occupation    Eigenvalue [Ha]    Eigenvalue [eV]
+      1       2.00000          -9.907743         -269.60340
+      2       2.00000          -9.907738         -269.60326
+      3       2.00000          -9.907309         -269.59158
+      4       2.00000          -9.907303         -269.59143
+      5       2.00000          -9.903687         -269.49304
+      6       2.00000          -9.903687         -269.49304
+      7       2.00000          -9.903188         -269.47945
+      8       2.00000          -9.903188         -269.47945
+      9       2.00000          -9.894619         -269.24627
+     10       2.00000          -9.894618         -269.24626
+     11       2.00000          -9.892554         -269.19010
+     12       2.00000          -9.892554         -269.19009
+     13       2.00000          -9.891807         -269.16976
+     14       2.00000          -9.891807         -269.16975
+     15       2.00000          -9.891455         -269.16020
+     16       2.00000          -9.891455         -269.16019
+     17       2.00000          -9.891000         -269.14780
+     18       2.00000          -9.891000         -269.14780
+     19       2.00000          -9.890715         -269.14005
+     20       2.00000          -9.890715         -269.14005
+     21       2.00000          -9.890682         -269.13915
+     22       2.00000          -9.890682         -269.13915
+     23       2.00000          -9.890504         -269.13430
+     24       2.00000          -9.890504         -269.13430
+     25       2.00000          -9.890064         -269.12232
+     26       2.00000          -9.890064         -269.12232
+     27       2.00000          -9.889365         -269.10330
+     28       2.00000          -9.889365         -269.10330
+     29       2.00000          -9.888820         -269.08849
+     30       2.00000          -9.888820         -269.08849
+     31       2.00000          -0.810832          -22.06387
+     32       2.00000          -0.794540          -21.62052
+     33       2.00000          -0.787484          -21.42854
+     34       2.00000          -0.786734          -21.40813
+     35       2.00000          -0.773275          -21.04188
+     36       2.00000          -0.728112          -19.81293
+     37       2.00000          -0.712044          -19.37571
+     38       2.00000          -0.692229          -18.83650
+     39       2.00000          -0.681796          -18.55261
+     40       2.00000          -0.679437          -18.48843
+     41       2.00000          -0.679238          -18.48302
+     42       2.00000          -0.678495          -18.46279
+     43       2.00000          -0.677522          -18.43631
+     44       2.00000          -0.653434          -17.78085
+     45       2.00000          -0.641980          -17.46916
+     46       2.00000          -0.581486          -15.82304
+     47       2.00000          -0.573107          -15.59503
+     48       2.00000          -0.548742          -14.93204
+     49       2.00000          -0.548418          -14.92321
+     50       2.00000          -0.546878          -14.88130
+     51       2.00000          -0.546636          -14.87472
+     52       2.00000          -0.543663          -14.79382
+     53       2.00000          -0.532137          -14.48020
+     54       2.00000          -0.526311          -14.32165
+     55       2.00000          -0.508739          -13.84349
+     56       2.00000          -0.486567          -13.24017
+     57       2.00000          -0.474022          -12.89880
+     58       2.00000          -0.467925          -12.73288
+     59       2.00000          -0.451297          -12.28042
+     60       2.00000          -0.435065          -11.83872
+     61       2.00000          -0.429882          -11.69768
+     62       2.00000          -0.416350          -11.32945
+     63       2.00000          -0.413296          -11.24636
+     64       2.00000          -0.409888          -11.15363
+     65       2.00000          -0.405439          -11.03257
+     66       2.00000          -0.403708          -10.98544
+     67       2.00000          -0.396758          -10.79634
+     68       2.00000          -0.394351          -10.73084
+     69       2.00000          -0.391338          -10.64884
+     70       2.00000          -0.384190          -10.45434
+     71       2.00000          -0.375273          -10.21170
+     72       2.00000          -0.373913          -10.17470
+     73       2.00000          -0.373129          -10.15335
+     74       2.00000          -0.372924          -10.14779
+     75       2.00000          -0.372325          -10.13148
+     76       2.00000          -0.371940          -10.12100
+     77       2.00000          -0.346026           -9.41585
+     78       2.00000          -0.344157           -9.36500
+     79       2.00000          -0.339212           -9.23044
+     80       2.00000          -0.335589           -9.13185
+     81       2.00000          -0.332789           -9.05564
+     82       2.00000          -0.328188           -8.93046
+     83       2.00000          -0.323604           -8.80571
+     84       2.00000          -0.306489           -8.33999
+     85       2.00000          -0.304327           -8.28117
+     86       2.00000          -0.303186           -8.25011
+     87       2.00000          -0.301515           -8.20463
+     88       2.00000          -0.299026           -8.13691
+     89       2.00000          -0.296989           -8.08147
+     90       2.00000          -0.292627           -7.96279
+     91       2.00000          -0.287395           -7.82042
+     92       2.00000          -0.254110           -6.91469
+     93       2.00000          -0.247446           -6.73336
+     94       2.00000          -0.238897           -6.50073
+     95       2.00000          -0.234010           -6.36773
+     96       2.00000          -0.233800           -6.36203
+     97       2.00000          -0.231466           -6.29852
+     98       2.00000          -0.230788           -6.28006
+     99       2.00000          -0.222542           -6.05568
+    100       2.00000          -0.219306           -5.96763
+    101       2.00000          -0.199545           -5.42991
+    102       0.00000          -0.071067           -1.93384
+    103       0.00000          -0.059845           -1.62846
+    104       0.00000          -0.047324           -1.28774
+    105       0.00000          -0.042140           -1.14670
+    106       0.00000          -0.041812           -1.13777
+    107       0.00000          -0.039748           -1.08160
+    108       0.00000          -0.036032           -0.98048
+    109       0.00000          -0.031970           -0.86996
+    110       0.00000          -0.028053           -0.76336
+    111       0.00000          -0.010787           -0.29354
+    112       0.00000          -0.007550           -0.20545
+    113       0.00000          -0.003400           -0.09253
+    114       0.00000           0.000266            0.00724
+    115       0.00000           0.007765            0.21130
+    116       0.00000           0.011566            0.31472
+    117       0.00000           0.014124            0.38434
+    118       0.00000           0.018640            0.50722
+    119       0.00000           0.027425            0.74626
+    120       0.00000           0.028845            0.78491
+    121       0.00000           0.031285            0.85130
+    122       0.00000           0.035474            0.96529
+    123       0.00000           0.039355            1.07089
+    124       0.00000           0.039756            1.08181
+    125       0.00000           0.047095            1.28151
+    126       0.00000           0.051637            1.40510
+    127       0.00000           0.054551            1.48440
+    128       0.00000           0.057273            1.55849
+    129       0.00000           0.060925            1.65785
+    130       0.00000           0.072276            1.96672
+    131       0.00000           0.077852            2.11846
+    132       0.00000           0.085718            2.33250
+    133       0.00000           0.090449            2.46123
+    134       0.00000           0.096628            2.62939
+    135       0.00000           0.102111            2.77859
+    136       0.00000           0.102761            2.79628
+    137       0.00000           0.103018            2.80327
+    138       0.00000           0.103513            2.81674
+    139       0.00000           0.109011            2.96635
+    140       0.00000           0.111999            3.04765
+    141       0.00000           0.112298            3.05578
+    142       0.00000           0.120855            3.28864
+    143       0.00000           0.123833            3.36967
+    144       0.00000           0.125585            3.41734
+    145       0.00000           0.135601            3.68990
+    146       0.00000           0.142446            3.87615
+    147       0.00000           0.145285            3.95339
+    148       0.00000           0.149104            4.05733
+    149       0.00000           0.152876            4.15997
+    150       0.00000           0.158390            4.31001
+    151       0.00000           0.159378            4.33690
+    152       0.00000           0.161966            4.40733
+    153       0.00000           0.164236            4.46910
+    154       0.00000           0.165278            4.49745
+    155       0.00000           0.171020            4.65370
+    156       0.00000           0.171439            4.66510
+    157       0.00000           0.172795            4.70200
+    158       0.00000           0.176986            4.81602
+    159       0.00000           0.179838            4.89364
+    160       0.00000           0.180209            4.90373
+    161       0.00000           0.187338            5.09774
+    162       0.00000           0.189197            5.14831
+    163       0.00000           0.189532            5.15743
+    164       0.00000           0.195717            5.32573
+    165       0.00000           0.197392            5.37131
+    166       0.00000           0.199897            5.43948
+    167       0.00000           0.204932            5.57648
+    168       0.00000           0.206776            5.62665
+    169       0.00000           0.208450            5.67222
+    170       0.00000           0.209707            5.70643
+    171       0.00000           0.214953            5.84918
+    172       0.00000           0.215579            5.86619
+    173       0.00000           0.217127            5.90833
+    174       0.00000           0.219953            5.98521
+    175       0.00000           0.221896            6.03811
+    176       0.00000           0.222627            6.05800
+    177       0.00000           0.225715            6.14202
+    178       0.00000           0.226287            6.15758
+    179       0.00000           0.228677            6.22262
+    180       0.00000           0.237284            6.45683
+    181       0.00000           0.237534            6.46362
+    182       0.00000           0.240424            6.54228
+    183       0.00000           0.241318            6.56659
+    184       0.00000           0.247443            6.73327
+    185       0.00000           0.251016            6.83048
+    186       0.00000           0.252015            6.85768
+    187       0.00000           0.253747            6.90480
+    188       0.00000           0.256112            6.96917
+    189       0.00000           0.256821            6.98845
+    190       0.00000           0.261141            7.10601
+    191       0.00000           0.263904            7.18119
+    192       0.00000           0.268216            7.29853
+    193       0.00000           0.269260            7.32694
+    194       0.00000           0.269891            7.34412
+    195       0.00000           0.275900            7.50761
+    196       0.00000           0.276144            7.51426
+    197       0.00000           0.284264            7.73521
+    198       0.00000           0.285306            7.76356
+    199       0.00000           0.286282            7.79014
+    200       0.00000           0.286982            7.80919
+    201       0.00000           0.292827            7.96822
+    202       0.00000           0.293829            7.99549
+    203       0.00000           0.297398            8.09262
+    204       0.00000           0.298066            8.11079
+    205       0.00000           0.303368            8.25505
+    206       0.00000           0.304869            8.29592
+    207       0.00000           0.308367            8.39108
+    208       0.00000           0.308958            8.40719
+    209       0.00000           0.315994            8.59862
+    210       0.00000           0.316616            8.61557
+    211       0.00000           0.320133            8.71126
+    212       0.00000           0.323432            8.80102
+    213       0.00000           0.327151            8.90223
+    214       0.00000           0.333571            9.07694
+    215       0.00000           0.338817            9.21967
+    216       0.00000           0.340206            9.25748
+    217       0.00000           0.341203            9.28461
+    218       0.00000           0.349022            9.49737
+    219       0.00000           0.349339            9.50601
+    220       0.00000           0.355837            9.68283
+    221       0.00000           0.359224            9.77499
+    222       0.00000           0.363277            9.88528
+    223       0.00000           0.366673            9.97767
+    224       0.00000           0.368194           10.01907
+
+  Highest occupied state (VBM) at     -5.42990752 eV
+  | Occupation number:      2.00000000
+
+  Lowest unoccupied state (CBM) at    -1.93383832 eV
+  | Occupation number:      0.00000000
+
+  Overall HOMO-LUMO gap:      3.49606920 eV.
+
+  Total energy components:
+  | Sum of eigenvalues            :        -657.46578360 Ha      -17890.55423309 eV
+  | XC energy correction          :        -169.91893757 Ha       -4623.72954416 eV
+  | XC potential correction       :         218.28212601 Ha        5939.75886043 eV
+  | Free-atom electrostatic energy:        -503.01975604 Ha      -13687.86399267 eV
+  | Hartree energy correction     :         -43.81102876 Ha       -1192.15874879 eV
+  | Entropy correction            :           0.00000000 Ha           0.00000000 eV
+  | ---------------------------
+  | Total energy                  :       -1155.93337995 Ha      -31454.54765829 eV
+  | Total energy, T -> 0          :       -1155.93337995 Ha      -31454.54765829 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :       -1155.93337995 Ha      -31454.54765829 eV
+
+  Derived energy quantities:
+  | Kinetic energy                :        1153.21858226 Ha       31380.67425432 eV
+  | Electrostatic energy          :       -2139.23302464 Ha      -58211.49236844 eV
+  | Energy correction for multipole
+  | error in Hartree potential    :          -0.13278258 Ha          -3.61319776 eV
+  | Sum of eigenvalues per atom                           :        -344.04911987 eV
+  | Total energy (T->0) per atom                          :        -604.89514727 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy per atom                       :        -604.89514727 eV
+  End evaluation of scaled ZORA corrections.
+  | Time for scaled ZORA corrections           :        5.242 s           5.252 s
+------------------------------------------------------------
+
+  Energy and forces in a compact form:
+  | Total energy uncorrected      :         -0.314545476582888E+05 eV
+  | Total energy corrected        :         -0.314545476582888E+05 eV  <-- do not rely on this value for anything but (periodic) metals
+  | Electronic free energy        :         -0.314545476582888E+05 eV
+
+  ------------------------------------ 
+  Start decomposition of the XC Energy 
+  ------------------------------------ 
+  X and C from original XC functional choice 
+  Hartree-Fock Energy :          0.000000000 Ha              0.000000000 eV
+  X Energy            :       -163.193746671 Ha          -4440.727788664 eV
+  C Energy            :         -6.725190903 Ha           -183.001755500 eV
+  Total XC Energy     :       -169.918937574 Ha          -4623.729544163 eV
+  ------------------------------------ 
+  LDA X and C from self-consistent density 
+  X Energy LDA        :       -147.770415345 Ha          -4021.037589669 eV
+  C Energy LDA        :        -12.982558781 Ha           -353.273398793 eV
+  ------------------------------------ 
+  End decomposition of the XC Energy 
+  ------------------------------------ 
+
+------------------------------------------------------------
+
+------------------------------------------------------------------------------
+  Final output of selected total energy values:
+
+  The following output summarizes some interesting total energy values
+  at the end of a run (AFTER all relaxation, molecular dynamics, etc.).
+
+  | Total energy of the DFT / Hartree-Fock s.c.f. calculation      :         -31454.547658289 eV
+  | Final zero-broadening corrected energy (caution - metals only) :         -31454.547658289 eV
+  | For reference only, the value of 1 Hartree used in FHI-aims is :             27.211384500 eV
+
+  Before relying on these values, please be sure to understand exactly which
+  total energy value is referred to by a given number. Different objects may
+  all carry the same name 'total energy'. Definitions:
+
+  Total energy of the DFT / Hartree-Fock s.c.f. calculation:
+  | Note that this energy does not include ANY quantities calculated after the
+  | s.c.f. cycle, in particular not ANY RPA, MP2, etc. many-body perturbation terms.
+  | Scalar relativistic effects have been included in the 'scaled ZORA' approximation.
+
+  Final zero-broadening corrected energy:
+  | For metallic systems only, a broadening of the occupation numbers at the Fermi
+  | level can be extrapolated back to zero broadening by an electron-gas inspired
+  | formula. For all systems that are not real metals, this value can be
+  | meaningless and should be avoided.
+
+------------------------------------------------------------------------------
+  Methods described in the following list of references were used in this FHI-aims run.
+  If you publish the results, please make sure to cite these reference if they apply.
+  FHI-aims is an academic code, and for our developers (often, Ph.D. students
+  and postdocs), scientific credit in the community is essential.
+  Thank you for helping us!
+
+  For any use of FHI-aims, please cite:
+
+    Volker Blum, Ralf Gehrke, Felix Hanke, Paula Havu, Ville Havu,
+    Xinguo Ren, Karsten Reuter, and Matthias Scheffler
+    'Ab initio molecular simulations with numeric atom-centered orbitals'
+    Computer Physics Communications 180, 2175-2196 (2009)
+    http://dx.doi.org/10.1016/j.cpc.2009.06.022
+
+
+  The scalable eigensolver library ELPA was used in your run.
+  ELPA is essential especially for large systems on hundreds or thousands of CPUs.
+  For ELPA, please cite:
+
+    Andreas Marek, Volker Blum, Rainer Johanni, Ville Havu, Bruno Lang,
+    Thomas Auckenthaler, Alexander Heinecke, Hans-Joachim Bungartz, and Hermann Lederer,
+    'The ELPA Library - Scalable Parallel Eigenvalue Solutions
+    for Electronic Structure Theory and Computational Science'
+    The Journal of Physics: Condensed Matter 26, 213201 (2014).
+    http://dx.doi.org/10.1088/0953-8984/26/21/213201
+
+
+  The ELSI infrastructure was used in your run to solve the Kohn-Sham electronic structure.
+  Please check out http://elsi-interchange.org to learn more.
+  If scalability is important for your project, please acknowledge ELSI by citing:
+
+    V. W-z. Yu, F. Corsetti, A. Garcia, W. P. Huhn, M. Jacquelin, W. Jia,
+    B. Lange, L. Lin, J. Lu, W. Mi, A. Seifitokaldani, A. Vazquez-Mayagoitia,
+    C. Yang, H. Yang, and V. Blum
+    'ELSI: A unified software interface for Kohn-Sham electronic structure solvers'
+    Computer Physics Communications 222, 267-285 (2018).
+    http://dx.doi.org/10.1016/j.cpc.2017.09.007
+
+
+  For the real-space grid partitioning and parallelization used in this calculation, please cite:
+
+    Ville Havu, Volker Blum, Paula Havu, and Matthias Scheffler,
+    'Efficient O(N) integration for all-electron electronic structure calculation'
+    'using numerically tabulated basis functions'
+    Journal of Computational Physics 228, 8367-8379 (2009).
+    http://dx.doi.org/10.1016/j.jcp.2009.08.008
+
+  Of course, there are many other important community references, e.g., those cited in the
+  above references. Our list is limited to references that describe implementations in the
+  FHI-aims code. The reason is purely practical (length of this list) - please credit others as well.
+
+------------------------------------------------------------
+          Leaving FHI-aims.
+          Date     :  20210620, Time     :  172822.470
+
+          Computational steps:
+          | Number of self-consistency cycles          :           15
+          | Number of SCF (re)initializations          :            1
+
+          Detailed time accounting                     :  max(cpu_time)    wall_clock(cpu1)
+          | Total time                                 :       90.347 s          90.634 s
+          | Preparation time                           :        0.214 s           0.298 s
+          | Boundary condition initalization           :        0.001 s           0.005 s
+          | Grid partitioning                          :        0.741 s           0.745 s
+          | Preloading free-atom quantities on grid    :        0.014 s           0.016 s
+          | Free-atom superposition energy             :        0.071 s           0.072 s
+          | Total time for integrations                :       51.672 s          51.679 s
+          | Total time for solution of K.-S. equations :        2.578 s           2.601 s
+          | Total time for density update              :       19.376 s          19.335 s
+          | Total time for mixing                      :        0.123 s           0.126 s
+          | Total time for Hartree multipole update    :        0.143 s           0.149 s
+          | Total time for Hartree multipole sum       :        8.976 s           8.980 s
+          | Total time for total energy evaluation     :        0.008 s           0.025 s
+          | Total time for scaled ZORA corrections     :        5.242 s           5.252 s
+
+          Partial memory accounting:
+          | Residual value for overall tracked memory usage across tasks :     0.000000 MB (should be 0.000000 MB)
+          | Peak values for overall tracked memory usage (after allocating zora_vector2):
+          |   Minimum:       27.287 MB (on task 40)
+          |   Maximum:       34.579 MB (on task 50)
+          |   Average:       30.484 MB
+          | Largest tracked array allocation (hamiltonian_shell):
+          |   Minimum:        7.404 MB (on task  1)
+          |   Maximum:        7.404 MB (on task  1)
+          |   Average:        7.404 MB
+          Note:  These values currently only include a subset of arrays which are explicitly tracked.
+          The "true" memory usage will be greater.
+
+          Have a nice day.
+------------------------------------------------------------
