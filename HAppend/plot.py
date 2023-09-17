@@ -5,6 +5,7 @@ command: python plot_bandstructure_absorption.py -p ../data -id ABECAL -b True -
 import os
 import json
 import math
+import re
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -41,7 +42,7 @@ class PlotAgent:
         absorb_a = np.array(data["a"])
         absorb_b = np.array(data["b"])
         absorb_c = np.array(data["c"])
-        absorb_sum = absorb_a+absorb_b+absorb_c
+        absorb_sum = np.mean((absorb_a, absorb_b, absorb_c), axis = 0)
         ax1.plot(absorb_a[:, 0], absorb_a[:, 1], '-b', label='Cal-a')
         ax1.plot(absorb_b[:, 0], absorb_b[:, 1], '-g', label='Cal-b')
         ax1.plot(absorb_c[:, 0], absorb_c[:, 1], '-m', label='Cal-c')
@@ -142,7 +143,7 @@ class PlotAgent:
         for i in range(int(len(banddata)/numPoint)):
             newcol = banddata[i*numPoint:(i+1)*numPoint, 6]
             QPband = np.append(QPband, newcol.reshape(numPoint, 1), 1)
-
+        print(numPoint, QPband.shape)
         # Solve for band inversion by reordering the bands
         QP_band=QPband.T[1:]
         QP_band=np.sort(QP_band,axis=0)
@@ -169,7 +170,7 @@ class PlotAgent:
         # add the band gap plot
         plt.plot([QPband[lowGapIndex][0], QPband[highGapIndex][0]], \
                 [QPband[lowGapIndex][int((col-1)/2)]-shiftVal, \
-                QPband[highGapIndex][int((col-1)/2)+1]-shiftVal], '--b', linewidth=2)
+                QPband[highGapIndex][int((col-1)/2)+1]-shiftVal], '--b', linewidth=4)
 
         # add the band gap value
         plt.text(0.5*(QPband[lowGapIndex][0]+QPband[highGapIndex][0])+0.06, \
@@ -182,10 +183,18 @@ class PlotAgent:
         # manipulate the kpoint into $*$ format
         for i, name in enumerate(kpointName):
             print("name", name)
+            kpointName[i] = re.sub('#', '', kpointName[i])
+            r = re.compile(r"(\d)")
+            kpointName[i] = r.sub(r"_\1", kpointName[i])
+            kpointName[i] = re.sub("Gamma", "\\\Gamma", kpointName[i])
+            kpointName[i] = re.sub("delta", "\\\delta", kpointName[i])
+            kpointName[i] = '$' + kpointName[i] + '$'
+            """
             if "Gamma" in name:
                 kpointName[i] = "$" + "\\" + name[2:] + "$"
             else:
                 kpointName[i] = "$" + name[2:] + "$"
+            """
         print(kpointName)
         # add high symmetry points
         for i in kpointIndex:
@@ -216,10 +225,11 @@ class PlotAgent:
             labelbottom=True)    # labels along the bottom edge are off
         plt.yticks(fontname="Helvatica", fontsize=18)
         plt.title(struct_id, fontname='Helvatica', fontsize=22)
-
+        
+        # plt.show()
         if savefig_path is not None:
             fig.savefig(savefig_path, dpi=300, bbox_inches='tight')
-
+        
         return fig
 
 # if __name__ == "__main__":
