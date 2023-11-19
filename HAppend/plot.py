@@ -178,7 +178,12 @@ class PlotAgent:
             shiftVal+0.02, str(abs(bandgapVal))[:4]+' eV', weight='normal', 
             size='xx-large', color='blue')
         # add the high symmtry point
-        plt.axis([0.0, QPband[numPoint-1][0], -3, 7])
+        if abs(bandgapVal) > 6.5:
+            y_axis_lim = 9
+        else:
+            y_axis_lim = 7
+        print("y_axis_lim", y_axis_lim)
+        plt.axis([0.0, QPband[numPoint-1][0], -3, y_axis_lim])
 
         # manipulate the kpoint into $*$ format
         for i, name in enumerate(kpointName):
@@ -189,6 +194,10 @@ class PlotAgent:
             kpointName[i] = re.sub("Gamma", "\\\Gamma", kpointName[i])
             kpointName[i] = re.sub("delta", "\\\delta", kpointName[i])
             kpointName[i] = '$' + kpointName[i] + '$'
+            if "\\Gamma" in kpointName[i] and len(kpointName[i]) > 8:
+                kpointName[i] = kpointName[i].replace("Gamma", "Gamma ")
+            if "\\delta" in kpointName[i] and len(kpointName[i]) > 8:
+                kpointName[i] = kpointName[i].replace("delta", "delta ")
             """
             if "Gamma" in name:
                 kpointName[i] = "$" + "\\" + name[2:] + "$"
