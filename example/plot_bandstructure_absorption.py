@@ -20,8 +20,12 @@ if __name__ == "__main__":
         print("struct id: %s" % struct_id)
     if args.bandstructure:
         plot_band = True
+    else:
+        plot_band = False
     if args.absorption:
         plot_absorp = True
+    else:
+        plot_absorp = False
     if args.bandstructure_path:
         bandstructure_path = args.bandstructure_path
     if args.absorption_path:
