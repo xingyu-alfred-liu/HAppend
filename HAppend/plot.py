@@ -226,11 +226,33 @@ class PlotAgent:
         plt.yticks(fontname="Helvatica", fontsize=18)
         plt.title(struct_id, fontname='Helvatica', fontsize=22)
         
-        # plt.show()
         if savefig_path is not None:
             fig.savefig(savefig_path, dpi=300, bbox_inches='tight')
         
         return fig
 
-# if __name__ == "__main__":
-#     main()
+    def plot_histogram(self, name="bse_Es", savefig_path=None):
+        """plot the histogram for given properties
+        """
+        values = []
+        if name not in ["bse_Es"]:
+            raise Exception("property not available in the PAH101")
+        if name == "bse_Es":
+            for k, v in self.data_dict.items():
+                values.append(v["gwbse"]["bse_Es"])
+            color_name = "b"
+            title_name = "Singlet-State Optical Gap"
+            x_axis_name = "$E_s (eV)$"
+            y_axis_name = "Count"
+        
+        fig, axs = plt.subplots(tight_layout=True)
+        # We can set the number of bins with the *bins* keyword argument.
+        axs.hist(values, color=color_name, bins=20)
+        axs.set_title(title_name)
+        axs.set_xlabel(x_axis_name)
+        axs.set_ylabel(y_axis_name)
+        if savefig_path is None:
+            fig_name = "tmp"
+        else:
+            fig_name = savefig_path
+            plt.savefig('%s.png' % (fig_name), bbox_inches='tight')

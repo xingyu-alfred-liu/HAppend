@@ -10,7 +10,7 @@ if __name__ == "__main__":
     parser.add_argument("-a", "--absorption", type=bool, help="if plot absorption spectrum")
     parser.add_argument("-bp", "--bandstructure_path", type=str, help="target path to save bandstructure plot")
     parser.add_argument("-ap", "--absorption_path", type=str, help="target path to save absorption spectrum")
-    
+
     args = parser.parse_args()
     if args.rootpath:
         root_path = args.rootpath
