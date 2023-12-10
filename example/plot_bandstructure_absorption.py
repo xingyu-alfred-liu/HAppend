@@ -37,7 +37,8 @@ if __name__ == "__main__":
         print("Plot Bandstructure...")
         bandstruct_fig = plot_agent.plot_bandstructure(
             struct_id=struct_id, 
-            savefig_path=bandstructure_path
+            savefig_path=bandstructure_path,
+            band_type="MF",
         )
     if plot_absorp:
         print("Plot Absorption Spectrum...")

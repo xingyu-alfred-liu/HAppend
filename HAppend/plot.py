@@ -76,7 +76,14 @@ class PlotAgent:
         
         return fig
 
-    def plot_bandstructure(self, struct_id="ABECAL", savefig_path=None):
+    def plot_bandstructure(self, struct_id="ABECAL", savefig_path=None, band_type="QP"):
+        """plot the bandstructure
+
+        Args:
+            struct_id (str): CSD reference ID. Default: "ABECAL"
+            savefig_path (str): path to the figure save. Default: None
+            band_type (str): type of the plot, either MF (mean-field), or QP (quasi particle). Default to "QP"
+        """
         data = self.data_dict[struct_id]["gwbse"]["bandstructure"]
         banddata = np.array(data["val"])
         kpoints = data["kpoints"]
@@ -140,8 +147,14 @@ class PlotAgent:
                     (abs(banddata[i][3])-abs(banddata[i-1][3]))**2 +
                     (abs(banddata[i][4])-abs(banddata[i-1][4]))**2) + QPband[i-1][0]
         # insert the band values, this is the QP band
+        if band_type == "QP":
+            band_idx_val = 6
+        elif band_type == "MF":
+            band_idx_val = 5
+        else:
+            raise Exception("Need to provide a valid band_type name")
         for i in range(int(len(banddata)/numPoint)):
-            newcol = banddata[i*numPoint:(i+1)*numPoint, 6]
+            newcol = banddata[i*numPoint:(i+1)*numPoint, band_idx_val]
             QPband = np.append(QPband, newcol.reshape(numPoint, 1), 1)
         print(numPoint, QPband.shape)
         # Solve for band inversion by reordering the bands
@@ -244,7 +257,7 @@ class PlotAgent:
         """plot the histogram for given properties
         """
         values = []
-        if name not in ["bse_Es"]:
+        if name not in ["bse_Es", "fundamental_gap", "bse_Es_bind", "bse_Et_bind"]:
             raise Exception("property not available in the PAH101")
         if name == "bse_Es":
             for k, v in self.data_dict.items():
@@ -253,15 +266,88 @@ class PlotAgent:
             title_name = "Singlet-State Optical Gap"
             x_axis_name = "$E_s (eV)$"
             y_axis_name = "Count"
+            axis_range = [0, 5.5, 0, 16]
+        if name == "fundamental_gap":
+            for k, v in self.data_dict.items():
+                values.append(v["gwbse"]["fundamental_gap"])
+            color_name = "r"
+            title_name = "Fundamental Gap"
+            x_axis_name = "$E - E_F (eV)$"
+            y_axis_name = "Count"
+            axis_range = [0, 7.5, 0, 16]
+        if name == "bse_Es_bind":
+            for k, v in self.data_dict.items():
+                values.append(v["gwbse"]["bse_Es_bind"])
+            color_name = "g"
+            title_name = "Singlet-State Exciton Binding Energy"
+            x_axis_name = "$E_S$ Binding Energy (eV)"
+            y_axis_name = "Count"
+            axis_range = [0, 2.5, 0, 25]
+        if name == "bse_Et_bind":
+            for k, v in self.data_dict.items():
+                values.append(v["gwbse"]["bse_Et_bind"])
+            color_name = "m"
+            title_name = "Triplet-State Exciton Binding Energy"
+            x_axis_name = "$E_T$ Binding Energy (eV)"
+            y_axis_name = "Count"
+            axis_range = [0, 3.5, 0, 25]
         
         fig, axs = plt.subplots(tight_layout=True)
         # We can set the number of bins with the *bins* keyword argument.
         axs.hist(values, color=color_name, bins=20)
-        axs.set_title(title_name)
-        axs.set_xlabel(x_axis_name)
-        axs.set_ylabel(y_axis_name)
+        plt.title(title_name, size=16)
+        plt.xlabel(x_axis_name, size=14)
+        plt.ylabel(y_axis_name, size=14)
+        plt.xticks(fontsize=10)
+        plt.yticks(fontsize=10)
+        plt.axis(axis_range)
         if savefig_path is None:
             fig_name = "tmp"
         else:
             fig_name = savefig_path
             plt.savefig('%s.png' % (fig_name), bbox_inches='tight')
+
+    def plot_correlation(self, name_list=["bse_Es", "fundamental_gap"], savefig_path=None, color="b"):
+        """plot the histogram for given properties
+        """
+        key_names = ["bse_Es", "bse_Et", "fundamental_gap", "bse_Es_bind", "bse_Et_bind", "bandgap"]
+        plot_name = ["$E_S$ (eV)", "$E_T$ (eV)", "Fundamental Gap (eV)", "$E_S$ Binding Energy (eV)", "$E_T$ Binding Energy (eV)", "Band Gap (eV)"]
+        for name in name_list:
+            if name not in key_names:
+                raise Exception("property not available in the PAH101")
+        if len(name_list) != 2:
+            raise Exception("Need exactly two properties to plot correlation")
+        val1 = []
+        val2 = []
+        
+        for k, v in self.data_dict.items():
+            if name_list[0] == "bandgap":
+                val1.append(v["dft"][name_list[0]])
+            else:
+                val1.append(v["gwbse"][name_list[0]])
+            if name_list[1] == "bandgap":
+                val2.append(v["dft"][name_list[1]])
+            else:
+                val2.append(v["gwbse"][name_list[1]])
+        color_name = color
+        title_name = "Correlation Plot"
+        plot_name_list = []
+        for name in name_list:
+            plot_name_list.append(plot_name[np.where(np.array(key_names) == name)[0][0]])
+        x_axis_name = plot_name_list[0]
+        y_axis_name = plot_name_list[1]
+        fig = plt.figure(num=None, figsize=(6, 6), dpi=80, facecolor='w', edgecolor='k', frameon=True)
+        # We can set the number of bins with the *bins* keyword argument.
+        plt.scatter(val1, val2, color=color_name)
+        plt.plot(np.arange(100)-10, np.arange(100)-10, "--k")
+        plt.title(title_name, size=16)
+        plt.xlabel(x_axis_name, size=12)
+        plt.ylabel(y_axis_name, size=12)
+        plt.xticks(fontsize=10)
+        plt.yticks(fontsize=10)
+        plt.axis([min(min(val1), min(val2))-0.5, max(max(val1), max(val2))+0.5, min(min(val1), min(val2))-0.5, max(max(val1), max(val2))+0.5])
+        if savefig_path is None:
+            fig_name = "tmp"
+        else:
+            fig_name = savefig_path
+            plt.savefig('%s.png' % (fig_name), dpi=300, bbox_inches='tight')
