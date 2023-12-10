@@ -89383,6 +89383,8 @@
             8,
             8
         ],
-        "fundamental_gap": 7.014608824
+        "fundamental_gap": 7.014608824,
+        "bse_Et_bind": 3.146201224,
+        "bse_Es_bind": 2.1863599239999996
     }
 }
