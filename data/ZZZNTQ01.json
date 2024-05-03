@@ -3472,7 +3472,6 @@
         "EA_s": -1.4758091,
         "polarisation": 1191.452,
         "density": 0.828282838,
-        "epsilon": 3.4565,
         "weight_s": 458.0,
         "eigenvalues": [
             [
@@ -5088,7 +5087,8 @@
             1,
             4,
             4
-        ]
+        ],
+        "epsilon_mbd": 3.4565
     },
     "gwbse": {
         "absorption": {
@@ -65965,6 +65965,7 @@
         ],
         "fundamental_gap": 3.706638872,
         "bse_Et_bind": 1.160196772,
-        "bse_Es_bind": 0.4933138719999999
+        "bse_Es_bind": 0.4933138719999999,
+        "epsilon_gw": 3.967846265
     }
 }
