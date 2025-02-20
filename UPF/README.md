@@ -1,4 +1,4 @@
-We used the pre-generated FHI98PP pseudopotentials available on the Quantum Espresso website: https://pseudopotentials.quantum-espresso.org/legacy_tables/fhi-pp-from-abinit-web-site. 
+We used the pre-generated FHI98PP PBE pseudopotentials available on the Quantum Espresso website: https://pseudopotentials.quantum-espresso.org/legacy_tables/fhi-pp-from-abinit-web-site. 
 
 More elements could be found on the website.
 
